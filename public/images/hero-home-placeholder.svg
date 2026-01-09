@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs>
+    <linearGradient id="heroGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f0fdfa"/>
+      <stop offset="50%" style="stop-color:#ccfbf1"/>
+      <stop offset="100%" style="stop-color:#99f6e4"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="675" fill="url(#heroGrad1)"/>
+
+  <!-- Decorative circles -->
+  <circle cx="200" cy="200" r="150" fill="#14B8A6" opacity="0.1"/>
+  <circle cx="1000" cy="500" r="200" fill="#14B8A6" opacity="0.1"/>
+  <circle cx="600" cy="100" r="80" fill="#0D9488" opacity="0.1"/>
+
+  <!-- Central icon -->
+  <circle cx="600" cy="337" r="80" fill="#14B8A6"/>
+  <path d="M560 337 L580 337 L600 317 L620 357 L640 337 L660 337" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+  <!-- Text -->
+  <text x="600" y="450" font-family="system-ui, sans-serif" font-size="24" fill="#0D9488" text-anchor="middle">Professional Healthcare Excellence</text>
+  <text x="600" y="480" font-family="system-ui, sans-serif" font-size="16" fill="#64748B" text-anchor="middle">Advancing Ketamine Therapy</text>
+</svg>

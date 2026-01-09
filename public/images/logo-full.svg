@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 80" width="300" height="80">
+  <defs>
+    <linearGradient id="tealGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#14B8A6"/>
+      <stop offset="100%" style="stop-color:#0D9488"/>
+    </linearGradient>
+    <linearGradient id="navyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1E3A5F"/>
+      <stop offset="100%" style="stop-color:#0F172A"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Icon Container -->
+  <rect x="5" y="10" width="60" height="60" rx="12" fill="url(#tealGradient)"/>
+
+  <!-- KA Letters -->
+  <text x="35" y="52" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="700" fill="white" text-anchor="middle">KA</text>
+
+  <!-- Neural pathway accent -->
+  <path d="M15 25 Q25 20, 35 25 T55 25" stroke="rgba(255,255,255,0.3)" stroke-width="2" fill="none"/>
+  <circle cx="15" cy="25" r="2" fill="rgba(255,255,255,0.5)"/>
+  <circle cx="35" cy="25" r="2" fill="rgba(255,255,255,0.5)"/>
+  <circle cx="55" cy="25" r="2" fill="rgba(255,255,255,0.5)"/>
+
+  <!-- Organization Name -->
+  <text x="80" y="38" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="700" fill="#0F172A">Ketamine</text>
+  <text x="80" y="58" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="400" fill="#64748B">Association</text>
+</svg>

@@ -1,0 +1,565 @@
+// Prisma Schema for KetamineAssociation.org
+// Dual-sided marketplace for ketamine therapy practitioners and patients
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Supabase PostgreSQL Configuration
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// ============================================================================
+// ENUMS
+// ============================================================================
+
+enum UserRole {
+  PATIENT
+  PRACTITIONER
+  ADMIN
+  MODERATOR
+}
+
+enum MembershipTier {
+  FREE
+  PROFESSIONAL
+  PREMIUM
+  ELITE
+  ENTERPRISE
+}
+
+enum MembershipStatus {
+  ACTIVE
+  INACTIVE
+  PAST_DUE
+  CANCELLED
+  TRIAL
+}
+
+enum TreatmentType {
+  IV_INFUSION
+  IM_INJECTION
+  NASAL_SPRAY
+  ORAL_SUBLINGUAL
+  KETAMINE_ASSISTED_PSYCHOTHERAPY
+}
+
+enum ConditionType {
+  TREATMENT_RESISTANT_DEPRESSION
+  CHRONIC_PAIN
+  PTSD
+  ANXIETY
+  OCD
+  BIPOLAR_DEPRESSION
+  FIBROMYALGIA
+  CRPS
+  SUICIDAL_IDEATION
+}
+
+enum CertificationType {
+  FOUNDATIONAL
+  ADVANCED
+  KAP_SPECIALTY
+  PRACTICE_LEADERSHIP
+  MASTER_PRACTITIONER
+}
+
+enum LeadSource {
+  DIRECTORY
+  ARTICLE
+  REFERRAL
+  EVENT
+  ADVERTISING
+}
+
+enum LeadStatus {
+  NEW
+  CONTACTED
+  SCHEDULED
+  CONVERTED
+  CLOSED
+}
+
+enum ConsultationStatus {
+  REQUESTED
+  SCHEDULED
+  COMPLETED
+  CANCELLED
+  NO_SHOW
+}
+
+enum ArticleCategory {
+  CLINICAL_RESEARCH
+  PRACTICE_MANAGEMENT
+  PATIENT_STORIES
+  REGULATORY_UPDATES
+  TREATMENT_INNOVATIONS
+  INDUSTRY_NEWS
+}
+
+enum ArticleStatus {
+  DRAFT
+  PENDING_REVIEW
+  REVISION_NEEDED
+  APPROVED
+  PUBLISHED
+  ARCHIVED
+}
+
+enum EventType {
+  CONFERENCE
+  WORKSHOP
+  WEBINAR
+  MEETUP
+  COURSE
+}
+
+enum EventFormat {
+  IN_PERSON
+  VIRTUAL
+  HYBRID
+}
+
+enum RegistrationStatus {
+  REGISTERED
+  ATTENDED
+  NO_SHOW
+  CANCELLED
+  REFUNDED
+}
+
+enum ProductCategory {
+  JOURNALS
+  WORKBOOKS
+  SUPPLEMENTS
+  COMFORT_ITEMS
+  BOOKS
+  BUNDLES
+}
+
+enum SubscriberRole {
+  GENERAL
+  PRACTITIONER
+  PATIENT
+}
+
+// ============================================================================
+// MODELS
+// ============================================================================
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  role      UserRole @default(PATIENT)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  practitioner      Practitioner?
+  patient           Patient?
+  reviews           Review[]
+  courseEnrollments CourseEnrollment[]
+
+  @@index([email])
+  @@index([role])
+}
+
+model Practitioner {
+  id     String @id @default(cuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Profile
+  slug         String  @unique
+  title        String? // Dr., MD, DO, etc.
+  firstName    String
+  lastName     String
+  credentials  String? // MD, DO, NP, PA, etc.
+  specialty    String?
+  bio          String? @db.Text
+  profileImage String?
+
+  // Practice Information
+  practiceName String?
+  address      String?
+  city         String?
+  state        String?
+  zipCode      String?
+  phone        String?
+  website      String?
+
+  // Location (for geo-search)
+  latitude  Float?
+  longitude Float?
+
+  // Membership
+  membershipTier         MembershipTier   @default(FREE)
+  membershipStatus       MembershipStatus @default(INACTIVE)
+  stripeCustomerId       String?
+  stripeSubscriptionId   String?
+  membershipStartedAt    DateTime?
+  membershipExpiresAt    DateTime?
+
+  // Verification
+  isVerified    Boolean   @default(false)
+  verifiedAt    DateTime?
+  licenseNumber String?
+  licenseState  String?
+  npiNumber     String?
+
+  // Stats
+  rating       Float @default(0)
+  reviewCount  Int   @default(0)
+  profileViews Int   @default(0)
+
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  treatments      PractitionerTreatment[]
+  conditions      PractitionerCondition[]
+  insurances      PractitionerInsurance[]
+  certifications  Certification[]
+  reviews         Review[]
+  leads           Lead[]
+  articles        Article[]
+  consultations   Consultation[]
+  savedByPatients SavedProvider[]
+  eventRegistrations EventRegistration[]
+
+  @@index([slug])
+  @@index([city, state])
+  @@index([state])
+  @@index([membershipTier])
+  @@index([isVerified])
+  @@index([rating])
+  @@index([latitude, longitude])
+}
+
+model PractitionerTreatment {
+  id             String        @id @default(cuid())
+  practitionerId String
+  practitioner   Practitioner  @relation(fields: [practitionerId], references: [id], onDelete: Cascade)
+  treatmentType  TreatmentType
+  createdAt      DateTime      @default(now())
+
+  @@unique([practitionerId, treatmentType])
+  @@index([treatmentType])
+}
+
+model PractitionerCondition {
+  id             String        @id @default(cuid())
+  practitionerId String
+  practitioner   Practitioner  @relation(fields: [practitionerId], references: [id], onDelete: Cascade)
+  condition      ConditionType
+  createdAt      DateTime      @default(now())
+
+  @@unique([practitionerId, condition])
+  @@index([condition])
+}
+
+model PractitionerInsurance {
+  id             String       @id @default(cuid())
+  practitionerId String
+  practitioner   Practitioner @relation(fields: [practitionerId], references: [id], onDelete: Cascade)
+  insuranceName  String
+  createdAt      DateTime     @default(now())
+
+  @@unique([practitionerId, insuranceName])
+  @@index([insuranceName])
+}
+
+model Patient {
+  id               String   @id @default(cuid())
+  userId           String   @unique
+  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  firstName        String?
+  lastName         String?
+  city             String?
+  state            String?
+  isPremium        Boolean  @default(false)
+  stripeCustomerId String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  // Relations
+  savedProviders    SavedProvider[]
+  consultations     Consultation[]
+  reviews           Review[]
+  courseEnrollments CourseEnrollment[]
+
+  @@index([city, state])
+  @@index([isPremium])
+}
+
+model SavedProvider {
+  id             String       @id @default(cuid())
+  patientId      String
+  patient        Patient      @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  practitionerId String
+  practitioner   Practitioner @relation(fields: [practitionerId], references: [id], onDelete: Cascade)
+  createdAt      DateTime     @default(now())
+
+  @@unique([patientId, practitionerId])
+  @@index([patientId])
+  @@index([practitionerId])
+}
+
+model Certification {
+  id                String            @id @default(cuid())
+  practitionerId    String
+  practitioner      Practitioner      @relation(fields: [practitionerId], references: [id], onDelete: Cascade)
+  certificationType CertificationType
+  issuedAt          DateTime
+  expiresAt         DateTime?
+  certificateUrl    String?
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+
+  @@index([practitionerId])
+  @@index([certificationType])
+  @@index([expiresAt])
+}
+
+model Lead {
+  id             String        @id @default(cuid())
+  practitionerId String
+  practitioner   Practitioner  @relation(fields: [practitionerId], references: [id], onDelete: Cascade)
+  firstName      String
+  lastName       String
+  email          String
+  phone          String?
+  message        String?       @db.Text
+  source         LeadSource    @default(DIRECTORY)
+  status         LeadStatus    @default(NEW)
+  condition      ConditionType?
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+
+  @@index([practitionerId])
+  @@index([status])
+  @@index([source])
+  @@index([createdAt])
+}
+
+model Consultation {
+  id             String             @id @default(cuid())
+  patientId      String
+  patient        Patient            @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  practitionerId String
+  practitioner   Practitioner       @relation(fields: [practitionerId], references: [id], onDelete: Cascade)
+  status         ConsultationStatus @default(REQUESTED)
+  requestedAt    DateTime           @default(now())
+  scheduledAt    DateTime?
+  completedAt    DateTime?
+  notes          String?            @db.Text
+  createdAt      DateTime           @default(now())
+  updatedAt      DateTime           @updatedAt
+
+  @@index([patientId])
+  @@index([practitionerId])
+  @@index([status])
+  @@index([scheduledAt])
+}
+
+model Review {
+  id             String       @id @default(cuid())
+  practitionerId String
+  practitioner   Practitioner @relation(fields: [practitionerId], references: [id], onDelete: Cascade)
+  patientId      String?
+  patient        Patient?     @relation(fields: [patientId], references: [id], onDelete: SetNull)
+  userId         String?
+  user           User?        @relation(fields: [userId], references: [id], onDelete: SetNull)
+  rating         Int          // 1-5 stars
+  title          String?
+  content        String?      @db.Text
+  isVerified     Boolean      @default(false)
+  isPublished    Boolean      @default(false)
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  @@index([practitionerId])
+  @@index([patientId])
+  @@index([rating])
+  @@index([isPublished])
+  @@index([createdAt])
+}
+
+model Article {
+  id             String          @id @default(cuid())
+  authorId       String?
+  practitionerId String?
+  practitioner   Practitioner?   @relation(fields: [practitionerId], references: [id], onDelete: SetNull)
+  slug           String          @unique
+  title          String
+  excerpt        String?         @db.Text
+  content        String          @db.Text
+  featuredImage  String?
+  category       ArticleCategory
+  tags           String[]
+  status         ArticleStatus   @default(DRAFT)
+  publishedAt    DateTime?
+  views          Int             @default(0)
+  likes          Int             @default(0)
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+
+  @@index([slug])
+  @@index([category])
+  @@index([status])
+  @@index([publishedAt])
+  @@index([practitionerId])
+}
+
+model Event {
+  id          String      @id @default(cuid())
+  slug        String      @unique
+  title       String
+  description String?     @db.Text
+  eventType   EventType
+  format      EventFormat
+  startDate   DateTime
+  endDate     DateTime?
+  timezone    String      @default("America/New_York")
+  location    String?     // Physical location for in-person/hybrid
+  virtualUrl  String?     // URL for virtual/hybrid events
+  price       Float       @default(0)
+  memberPrice Float?      // Discounted price for members
+  capacity    Int?
+  isPublished Boolean     @default(false)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  // Relations
+  registrations EventRegistration[]
+
+  @@index([slug])
+  @@index([eventType])
+  @@index([format])
+  @@index([startDate])
+  @@index([isPublished])
+}
+
+model EventRegistration {
+  id               String             @id @default(cuid())
+  eventId          String
+  event            Event              @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  practitionerId   String?
+  practitioner     Practitioner?      @relation(fields: [practitionerId], references: [id], onDelete: SetNull)
+  email            String
+  firstName        String
+  lastName         String
+  amountPaid       Float              @default(0)
+  stripePaymentId  String?
+  status           RegistrationStatus @default(REGISTERED)
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+
+  @@unique([eventId, email])
+  @@index([eventId])
+  @@index([practitionerId])
+  @@index([status])
+}
+
+model Course {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  title       String
+  description String?  @db.Text
+  price       Float    @default(0)
+  memberPrice Float?   // Discounted price for members
+  ceCredits   Float?   // Continuing education credits
+  ceProvider  String?  // CE accreditation provider
+  isPublished Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  modules     CourseModule[]
+  enrollments CourseEnrollment[]
+
+  @@index([slug])
+  @@index([isPublished])
+}
+
+model CourseModule {
+  id          String   @id @default(cuid())
+  courseId    String
+  course      Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  title       String
+  description String?  @db.Text
+  content     String?  @db.Text
+  videoUrl    String?
+  duration    Int?     // Duration in minutes
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([courseId])
+  @@index([order])
+}
+
+model CourseEnrollment {
+  id              String    @id @default(cuid())
+  courseId        String
+  course          Course    @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  patientId       String?
+  patient         Patient?  @relation(fields: [patientId], references: [id], onDelete: SetNull)
+  userId          String?
+  user            User?     @relation(fields: [userId], references: [id], onDelete: SetNull)
+  email           String
+  progress        Float     @default(0) // 0-100 percentage
+  completedAt     DateTime?
+  certificateUrl  String?
+  stripePaymentId String?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@unique([courseId, email])
+  @@index([courseId])
+  @@index([patientId])
+  @@index([userId])
+}
+
+model Product {
+  id              String          @id @default(cuid())
+  slug            String          @unique
+  name            String
+  description     String?         @db.Text
+  price           Float
+  compareAtPrice  Float?          // Original price for showing discounts
+  category        ProductCategory
+  images          String[]
+  inventory       Int             @default(0)
+  isDigital       Boolean         @default(false)
+  digitalFileUrl  String?         // URL for digital product download
+  isPublished     Boolean         @default(false)
+  stripeProductId String?
+  stripePriceId   String?
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  @@index([slug])
+  @@index([category])
+  @@index([isPublished])
+  @@index([isDigital])
+}
+
+model NewsletterSubscriber {
+  id             String         @id @default(cuid())
+  email          String         @unique
+  firstName      String?
+  role           SubscriberRole @default(GENERAL)
+  isActive       Boolean        @default(true)
+  subscribedAt   DateTime       @default(now())
+  unsubscribedAt DateTime?
+
+  @@index([email])
+  @@index([role])
+  @@index([isActive])
+}
