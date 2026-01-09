@@ -12,7 +12,8 @@
     "db:migrate": "prisma migrate dev",
     "db:seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts",
     "db:studio": "prisma studio",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "articles:index": "node scripts/generate-article-index.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

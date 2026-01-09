@@ -1,12 +1,34 @@
 ---
-title: "Your First Ketamine Infusion: What to Expect from Start to Finish"
+title: "Your First Ketamine Infusion: Complete Patient Guide"
 slug: "first-ketamine-infusion-what-to-expect"
-excerpt: "Feeling nervous about your first ketamine treatment? This comprehensive guide walks you through every step of the process, from preparation to recovery, so you know exactly what to expect."
+excerpt: "Nervous about your first ketamine treatment? This guide walks you through preparation, the infusion experience, and recovery so you know exactly what to expect."
 category: "PATIENT_EDUCATION"
 author: "Ketamine Association Editorial Team"
 publishedAt: "2026-01-08"
-featuredImage: "/images/articles/placeholder.jpg"
-tags: ["ketamine", "first infusion", "patient guide", "what to expect", "preparation"]
+updatedAt: "2026-01-08"
+featuredImage: "/images/articles/first-ketamine-infusion-what-to-expect.jpg"
+tags: ["first ketamine infusion", "ketamine treatment", "patient guide", "what to expect", "ketamine preparation", "infusion therapy"]
+keywords: ["first ketamine infusion", "what to expect ketamine treatment", "ketamine therapy experience", "preparing for ketamine", "ketamine infusion side effects", "ketamine treatment process", "IV ketamine experience"]
+metaTitle: "Your First Ketamine Infusion: What to Expect | Complete Patient Guide"
+metaDescription: "Complete guide to your first ketamine infusion. Learn how to prepare, what happens during treatment, and what to expect during recovery. Expert tips for best results."
+canonicalUrl: "https://ketamineassociation.org/blog/first-ketamine-infusion-what-to-expect"
+ogTitle: "Your First Ketamine Infusion: What to Expect from Start to Finish"
+ogDescription: "Everything you need to know about your first ketamine treatment - from preparation to recovery. Expert guide to help you feel prepared and confident."
+ogImage: "/images/og/first-ketamine-infusion-what-to-expect.jpg"
+twitterCard: "summary_large_image"
+schema:
+  type: "Article"
+  datePublished: "2026-01-08"
+  dateModified: "2026-01-08"
+  author: "Ketamine Association Editorial Team"
+readingTime: "15 min read"
+wordCount: 3800
+audience: "patients"
+relatedArticles:
+  - "is-ketamine-right-for-you"
+  - "set-and-setting-preparation"
+  - "integration-therapy-maximizing-benefits"
+  - "after-infusion-navigating-recovery"
 ---
 
 # Your First Ketamine Infusion: What to Expect from Start to Finish
@@ -15,9 +37,22 @@ Deciding to try ketamine therapy is a significant step—and it's completely nor
 
 This guide is designed to demystify the process. By walking you through each stage—from the days before your appointment to the weeks after—we hope to help you feel prepared, informed, and empowered to get the most from your treatment.
 
+## Table of Contents
+
+- [Before Your Appointment: Getting Ready](#before-your-appointment-getting-ready)
+- [Arriving at the Clinic](#arriving-at-the-clinic)
+- [During the Infusion](#during-the-infusion)
+- [After the Infusion](#after-the-infusion)
+- [The Rest of Day One](#the-rest-of-day-one)
+- [The Days Following Treatment](#the-days-following-treatment)
+- [Preparing for Subsequent Treatments](#preparing-for-subsequent-treatments)
+- [Frequently Asked Questions](#frequently-asked-questions)
+
 ## Before Your Appointment: Getting Ready
 
-Preparation for ketamine therapy actually begins well before you arrive at the clinic.
+Preparation for ketamine therapy actually begins well before you arrive at the clinic. Taking the right steps beforehand can significantly improve your experience and outcomes.
+
+> **Not sure if ketamine is right for you?** Read our guide: [Is Ketamine Therapy Right for You? A Decision-Making Guide](/blog/is-ketamine-right-for-you)
 
 ### The Week Before
 
@@ -54,6 +89,8 @@ Your provider will have given you specific instructions, which may include:
 - Consider writing down what you hope to gain or explore
 - Practice any relaxation or meditation techniques you know
 - Avoid stressful situations or difficult conversations if possible
+
+For more on mental preparation, see our guide on [Set and Setting: Preparing for Ketamine Therapy](/blog/set-and-setting-preparation).
 
 **Practical Preparation**
 
@@ -346,6 +383,8 @@ Antidepressant effects, if they occur, typically unfold like this:
 
 Remember that response varies widely. Some people feel dramatically better quickly; others have more subtle or gradual improvement.
 
+> **Learn more about the science:** [The 72-Hour Breakthrough: Understanding Ketamine's Rapid Antidepressant Effect](/blog/72-hour-breakthrough-rapid-effect)
+
 ### Integration
 
 The days after treatment represent what some call a "neuroplasticity window"—a period when the brain may be especially receptive to positive change. Consider:
@@ -355,6 +394,8 @@ The days after treatment represent what some call a "neuroplasticity window"—a
 - **Healthy practices**: Exercise, social connection, time in nature
 - **Intention-setting**: Reinforce positive goals and behaviors
 - **Self-compassion**: Be patient with yourself as you process
+
+For more on maximizing your results, see [Integration Therapy: Maximizing the Benefits of Ketamine Treatment](/blog/integration-therapy-maximizing-benefits).
 
 ## Preparing for Subsequent Treatments
 
@@ -377,6 +418,34 @@ Between treatments:
 
 ---
 
+## Frequently Asked Questions
+
+### How long does a ketamine infusion take?
+
+The infusion itself typically lasts 40-60 minutes for IV ketamine. Including check-in, preparation, the infusion, and recovery monitoring, plan to be at the clinic for approximately 2-2.5 hours total. You'll need the rest of the day to recover at home.
+
+### Will I be unconscious during ketamine treatment?
+
+No, you won't be unconscious. Ketamine produces a dissociative state where you may feel detached from your body and surroundings, but you'll remain aware that you're having a treatment. You can typically communicate with staff if needed, though you may not want to talk during the experience.
+
+### Can I drive myself home after ketamine?
+
+No, you absolutely cannot drive after a ketamine infusion. The effects impair your judgment, coordination, and reaction time for several hours after treatment. You must arrange for someone else to drive you home—a friend, family member, or rideshare service.
+
+### What if I have a bad experience during the infusion?
+
+Difficult experiences during ketamine are not uncommon and are usually manageable. Staff are trained to support you through challenging moments. You can raise your hand to signal for help, and the dose can be adjusted if needed. Remember that the effects are temporary and will subside. Many patients find that challenging experiences ultimately lead to therapeutic insights.
+
+### How many ketamine infusions will I need?
+
+Most protocols involve an initial series of 6 infusions over 2-3 weeks (the "induction phase"). After this, maintenance treatments are typically needed to sustain benefits, ranging from weekly to monthly depending on your response. Your provider will create a personalized plan based on how you respond.
+
+### What should I eat before ketamine treatment?
+
+Most clinics require you to fast for 4-6 hours before treatment to reduce nausea risk. You can usually drink clear liquids (water) until a couple hours before. Follow your specific clinic's instructions. After treatment, eat light, easily digestible foods when you feel ready.
+
+---
+
 ## Key Takeaways
 
 - **Preparation matters**: Physical, mental, and logistical preparation helps you get the most from treatment
@@ -394,6 +463,24 @@ Between treatments:
 - **It gets easier**: Subsequent sessions are typically less anxiety-provoking as you know what to expect
 
 - **Track your response**: Monitoring helps you and your provider optimize treatment
+
+---
+
+## Ready to Take the Next Step?
+
+<div class="cta-box">
+
+### Find a Ketamine Provider Near You
+Connect with a qualified, vetted ketamine provider in your area. Our directory includes only certified practitioners who meet our standards for safety and quality.
+
+[Find a Provider](/find-provider)
+
+### Have Questions?
+Our team can help answer your questions about ketamine therapy and connect you with the right resources.
+
+[Contact Us](/contact) | [Learn More About Ketamine](/about-ketamine)
+
+</div>
 
 ---
 

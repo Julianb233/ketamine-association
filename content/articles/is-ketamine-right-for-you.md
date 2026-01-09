@@ -1,12 +1,34 @@
 ---
-title: "Is Ketamine Therapy Right for You? A Decision-Making Guide"
+title: "Is Ketamine Therapy Right for You? Complete Decision Guide"
 slug: "is-ketamine-right-for-you"
-excerpt: "Ketamine therapy isn't for everyone, but it may be life-changing for the right candidates. This guide helps you evaluate whether you might be a good candidate and what questions to ask your healthcare provider."
+excerpt: "Not sure if ketamine therapy is right for your situation? This comprehensive guide helps you evaluate candidacy, understand contraindications, and make an informed treatment decision."
 category: "PATIENT_EDUCATION"
 author: "Ketamine Association Editorial Team"
 publishedAt: "2026-01-08"
-featuredImage: "/images/articles/placeholder.jpg"
-tags: ["ketamine", "treatment decision", "patient education", "depression treatment", "mental health"]
+updatedAt: "2026-01-08"
+featuredImage: "/images/articles/is-ketamine-right-for-you.jpg"
+tags: ["ketamine eligibility", "ketamine candidate", "treatment decision", "depression treatment options", "mental health", "patient guide"]
+keywords: ["am I candidate for ketamine", "who should get ketamine therapy", "ketamine contraindications", "ketamine eligibility requirements", "is ketamine safe for me", "ketamine treatment criteria", "ketamine therapy requirements"]
+metaTitle: "Is Ketamine Therapy Right for You? Eligibility Guide | Ketamine Association"
+metaDescription: "Find out if you're a good candidate for ketamine therapy. Learn about eligibility criteria, contraindications, and key questions to ask before starting treatment."
+canonicalUrl: "https://ketamineassociation.org/blog/is-ketamine-right-for-you"
+ogTitle: "Is Ketamine Therapy Right for You? A Decision-Making Guide"
+ogDescription: "Comprehensive guide to evaluating whether ketamine therapy is appropriate for your situation. Understand candidacy criteria and make an informed decision."
+ogImage: "/images/og/is-ketamine-right-for-you.jpg"
+twitterCard: "summary_large_image"
+schema:
+  type: "Article"
+  datePublished: "2026-01-08"
+  dateModified: "2026-01-08"
+  author: "Ketamine Association Editorial Team"
+readingTime: "14 min read"
+wordCount: 3500
+audience: "patients"
+relatedArticles:
+  - "first-ketamine-infusion-what-to-expect"
+  - "ketamine-vs-antidepressants-decade-research"
+  - "patient-screening-assessment"
+  - "at-home-vs-clinic-delivery"
 ---
 
 # Is Ketamine Therapy Right for You? A Decision-Making Guide
@@ -14,6 +36,17 @@ tags: ["ketamine", "treatment decision", "patient education", "depression treatm
 Deciding whether to pursue ketamine therapy is a deeply personal decision—one that deserves careful thought, honest self-assessment, and guidance from qualified healthcare providers. This isn't a treatment to pursue casually, but for the right candidates, it can be genuinely transformative.
 
 This guide will help you think through whether ketamine might be appropriate for your situation. It's not a substitute for professional evaluation, but it can help you have a more informed conversation with your healthcare providers and make a decision you feel confident about.
+
+## Table of Contents
+
+- [Who Typically Benefits from Ketamine?](#who-typically-benefits-from-ketamine)
+- [Who Should Not Pursue Ketamine?](#who-should-not-pursue-ketamine)
+- [Questions to Ask Yourself](#questions-to-ask-yourself)
+- [Questions to Ask Your Provider](#questions-to-ask-your-provider)
+- [Understanding the Decision](#understanding-the-decision)
+- [The Evaluation Process](#the-evaluation-process)
+- [Making Your Decision](#making-your-decision)
+- [Frequently Asked Questions](#frequently-asked-questions)
 
 ## Who Typically Benefits from Ketamine?
 
@@ -32,15 +65,22 @@ Ketamine has the strongest evidence base for treatment-resistant depression (TRD
 
 If this describes you, ketamine may offer a genuinely different approach worth exploring.
 
+> **Related:** [Ketamine vs Traditional Antidepressants: What 10 Years of Research Tells Us](/blog/ketamine-vs-antidepressants-decade-research)
+
 ### Other Conditions with Evidence
 
 Beyond treatment-resistant depression, ketamine has shown promise for:
 
 **Bipolar depression** — The depressive phase of bipolar disorder, with appropriate precautions
+
 **Suicidal ideation** — Particularly when rapid reduction of suicidal thoughts is critical
-**PTSD** — Emerging evidence, especially for treatment-resistant cases
+
+**PTSD** — Emerging evidence, especially for treatment-resistant cases. Learn more: [PTSD and Ketamine: What the Trauma Research Shows](/blog/ptsd-ketamine-trauma-research)
+
 **Anxiety disorders** — Mixed evidence; some patients report significant benefit
-**Chronic pain conditions** — CRPS, fibromyalgia, neuropathic pain
+
+**Chronic pain conditions** — CRPS, fibromyalgia, neuropathic pain. See: [Ketamine for Chronic Pain: Clinical Applications](/blog/chronic-pain-ketamine-applications)
+
 **OCD** — Preliminary research suggests potential benefit
 
 ### Ideal Candidate Characteristics
@@ -203,6 +243,8 @@ If you're considering ketamine therapy, come prepared with questions for your ev
 - How many appointments will I need initially?
 - What are your policies on maintenance treatment?
 
+> **Considering at-home treatment?** Read: [At-Home vs. Clinic Ketamine: Understanding Your Options](/blog/at-home-vs-clinic-delivery)
+
 ## Understanding the Decision
 
 Making a treatment decision involves weighing multiple factors.
@@ -348,6 +390,30 @@ Ultimately, this is your decision to make. Here's a framework for deciding:
 
 ---
 
+## Frequently Asked Questions
+
+### Do I need to have tried other medications before ketamine?
+
+Ketamine is typically recommended for "treatment-resistant" depression, which generally means you haven't responded adequately to at least two different antidepressant medications at appropriate doses for adequate time (usually 6-8 weeks each). However, in some cases—such as severe suicidal ideation or situations where rapid response is critical—providers may consider ketamine earlier.
+
+### Can I take ketamine if I have anxiety?
+
+Many patients with anxiety alongside depression do receive ketamine treatment. However, the dissociative experience can be challenging for people with severe anxiety. Good providers will assess your anxiety level, may start with lower doses, and will prepare you for what to expect. Some patients find that ketamine actually helps their anxiety significantly.
+
+### Is ketamine safe if I have a history of substance abuse?
+
+This requires careful evaluation. Active substance abuse is generally a contraindication. However, people in stable recovery may be candidates with appropriate safeguards. You should be completely honest with your provider about your substance use history. Some providers specialize in treating patients with co-occurring depression and substance use disorders.
+
+### How do I know if my depression is "treatment-resistant" enough for ketamine?
+
+Generally, if you've tried at least two different antidepressants from different classes, at adequate doses, for at least 6-8 weeks each, without achieving remission, your depression may be considered treatment-resistant. Your provider can help assess whether you meet these criteria. Be honest about whether previous trials were truly adequate (right dose, long enough, taken consistently).
+
+### What if I'm not sure ketamine is right for me?
+
+It's okay to be uncertain. You can schedule an evaluation consultation without committing to treatment. This gives you the opportunity to ask questions, learn more about what's involved, and make an informed decision. Many people find that talking with a ketamine provider helps clarify whether it's the right choice for them.
+
+---
+
 ## Key Takeaways
 
 - **Ketamine is most appropriate for treatment-resistant depression** — It's typically not a first-line treatment but an option when others have failed
@@ -365,6 +431,24 @@ Ultimately, this is your decision to make. Here's a framework for deciding:
 - **It's okay to wait** — If you're not sure, gathering more information or addressing other issues first is reasonable
 
 - **Trust your process** — Ultimately, you know yourself best; make a decision you can stand behind
+
+---
+
+## Ready to Take the Next Step?
+
+<div class="cta-box">
+
+### Find a Qualified Provider
+Our directory connects you with vetted ketamine providers who meet rigorous standards for safety, training, and patient care.
+
+[Find a Provider](/find-provider)
+
+### Schedule a Consultation
+Not ready to commit? Many providers offer consultation appointments where you can ask questions and learn more before deciding.
+
+[Learn More](/consultation) | [Contact Us](/contact)
+
+</div>
 
 ---
 
