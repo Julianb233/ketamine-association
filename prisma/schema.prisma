@@ -543,11 +543,66 @@ model Product {
   stripePriceId   String?
   createdAt       DateTime        @default(now())
   updatedAt       DateTime        @updatedAt
+  orderItems      OrderItem[]
 
   @@index([slug])
   @@index([category])
   @@index([isPublished])
   @@index([isDigital])
+}
+
+// Order status enum
+enum OrderStatus {
+  PENDING
+  PAID
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+  REFUNDED
+}
+
+model Order {
+  id               String      @id @default(cuid())
+  stripeSessionId  String?     @unique
+  stripePaymentId  String?
+  email            String
+  total            Float
+  subtotal         Float
+  shipping         Float       @default(0)
+  tax              Float       @default(0)
+  discount         Float       @default(0)
+  status           OrderStatus @default(PENDING)
+  shippingName     String?
+  shippingAddress  String?
+  shippingCity     String?
+  shippingState    String?
+  shippingZip      String?
+  shippingCountry  String?     @default("US")
+  trackingNumber   String?
+  notes            String?     @db.Text
+  items            OrderItem[]
+  createdAt        DateTime    @default(now())
+  updatedAt        DateTime    @updatedAt
+
+  @@index([email])
+  @@index([status])
+  @@index([stripeSessionId])
+  @@index([createdAt])
+}
+
+model OrderItem {
+  id        String   @id @default(cuid())
+  orderId   String
+  order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId String
+  product   Product  @relation(fields: [productId], references: [id])
+  quantity  Int
+  price     Float    // Price at time of purchase
+  createdAt DateTime @default(now())
+
+  @@index([orderId])
+  @@index([productId])
 }
 
 model NewsletterSubscriber {

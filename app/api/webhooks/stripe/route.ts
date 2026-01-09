@@ -387,7 +387,26 @@ async function handleStorePurchaseCompleted(session: Stripe.Checkout.Session) {
   try {
     const items = JSON.parse(itemsJson) as Array<{ id: string; quantity: number }>;
     const customerEmail = session.customer_details?.email || session.customer_email;
-    const shippingDetails = session.shipping_details;
+    // Get shipping details from the expanded session (if available)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const shippingDetails = (session as any).shipping_details as {
+      name?: string;
+      address?: {
+        line1?: string;
+        city?: string;
+        state?: string;
+        postal_code?: string;
+      };
+    } | null;
+
+    // Get product prices for order items
+    const productIds = items.map((item) => item.id);
+    const products = await prisma.product.findMany({
+      where: { id: { in: productIds } },
+      select: { id: true, price: true, isDigital: true, inventory: true },
+    });
+
+    const productMap = new Map(products.map((p) => [p.id, p]));
 
     // Create order record
     const order = await prisma.order.create({
@@ -408,6 +427,7 @@ async function handleStorePurchaseCompleted(session: Stripe.Checkout.Session) {
           create: items.map((item) => ({
             productId: item.id,
             quantity: item.quantity,
+            price: productMap.get(item.id)?.price || 0,
           })),
         },
       },
@@ -415,10 +435,7 @@ async function handleStorePurchaseCompleted(session: Stripe.Checkout.Session) {
 
     // Update product inventory for physical items
     for (const item of items) {
-      const product = await prisma.product.findUnique({
-        where: { id: item.id },
-        select: { isDigital: true, inventory: true },
-      });
+      const product = productMap.get(item.id);
 
       if (product && !product.isDigital) {
         await prisma.product.update({

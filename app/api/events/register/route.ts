@@ -111,7 +111,7 @@ export async function POST(request: NextRequest) {
 
     // Send confirmation email
     try {
-      const isVirtual = event.isVirtual ?? false;
+      const isVirtual = event.format === 'VIRTUAL' || event.format === 'HYBRID';
       const eventDate = event.startDate.toLocaleDateString('en-US', {
         weekday: 'long',
         year: 'numeric',

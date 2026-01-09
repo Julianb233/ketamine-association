@@ -130,6 +130,7 @@ export async function POST(request: NextRequest) {
       success_url: `${origin}/store/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${origin}/store/cart`,
       metadata: {
+        type: 'store_purchase',
         items: JSON.stringify(items.map((i) => ({ id: i.id, quantity: i.quantity }))),
         hasPhysicalItems: hasPhysicalItems.toString(),
       },
