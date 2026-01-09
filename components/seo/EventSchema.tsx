@@ -63,7 +63,7 @@ export function EventSchema({ event }: EventSchemaProps) {
   };
 
   // Build location schema
-  const getLocation = () => {
+  const getLocation = (): { '@type': 'Place'; name?: string; address: { '@type': 'PostalAddress'; streetAddress?: string; addressLocality?: string; addressRegion?: string; postalCode?: string; addressCountry?: string; }; } | { '@type': 'VirtualLocation'; url: string; } | undefined => {
     if (!event.location) return undefined;
 
     if (event.location.type === 'virtual') {
@@ -74,7 +74,8 @@ export function EventSchema({ event }: EventSchemaProps) {
     }
 
     if (event.location.type === 'physical' || event.location.type === 'hybrid') {
-      const physicalLocation = {
+      // For hybrid events, return the physical location (virtual URL is in eventAttendanceMode)
+      return {
         '@type': 'Place' as const,
         name: event.location.name,
         address: {
@@ -86,18 +87,6 @@ export function EventSchema({ event }: EventSchemaProps) {
           addressCountry: 'US',
         },
       };
-
-      if (event.location.type === 'hybrid') {
-        return [
-          physicalLocation,
-          {
-            '@type': 'VirtualLocation' as const,
-            url: event.location.url || eventUrl,
-          },
-        ];
-      }
-
-      return physicalLocation;
     }
 
     return undefined;

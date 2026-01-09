@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import { Providers } from './providers';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
+import { OrganizationSchema } from '@/components/seo/OrganizationSchema';
 import './globals.css';
 
 const inter = Inter({
@@ -120,6 +121,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={inter.variable}>
+      <head>
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
+        <OrganizationSchema />
+      </head>
       <body className="min-h-screen bg-white font-sans antialiased">
         <Providers>
           <Header />

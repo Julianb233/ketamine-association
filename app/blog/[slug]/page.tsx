@@ -8,6 +8,9 @@ import { Button } from '@/components/ui/Button';
 import { Avatar } from '@/components/ui/Avatar';
 import { Card } from '@/components/ui/Card';
 import { ArticleCard, type Article } from '@/components/blog/ArticleCard';
+import { ArticleSchema } from '@/components/seo/ArticleSchema';
+import { BreadcrumbSchema, BlogBreadcrumbs } from '@/components/seo/BreadcrumbSchema';
+import { generateArticleMetadata } from '@/lib/seo/metadata';
 import {
   getArticleBySlugWithHtml,
   getRelatedArticles,
@@ -52,23 +55,22 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     };
   }
 
-  return {
-    title: `${article.title} | Ketamine Association Blog`,
+  const displayCategory = CATEGORY_DISPLAY_NAMES[article.category] || article.category;
+
+  return generateArticleMetadata({
+    title: article.title,
     description: article.excerpt,
-    openGraph: {
-      title: article.title,
-      description: article.excerpt,
-      type: 'article',
-      publishedTime: article.publishedAt,
-      images: [article.featuredImage || '/images/blog/placeholder.jpg'],
+    slug: article.slug,
+    image: article.featuredImage || '/images/blog/placeholder.jpg',
+    publishedAt: article.publishedAt,
+    modifiedAt: article.publishedAt,
+    author: {
+      name: article.author,
     },
-    twitter: {
-      card: 'summary_large_image',
-      title: article.title,
-      description: article.excerpt,
-      images: [article.featuredImage || '/images/blog/placeholder.jpg'],
-    },
-  };
+    category: displayCategory,
+    tags: article.tags,
+    section: displayCategory,
+  });
 }
 
 const categoryBadgeVariants: Record<string, 'primary' | 'secondary' | 'accent' | 'default'> = {
@@ -104,8 +106,29 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   });
 
   return (
-    <main className="min-h-screen bg-slate-50">
-      {/* Article Header */}
+    <>
+      {/* SEO Schema Markup */}
+      <ArticleSchema
+        article={{
+          title: article.title,
+          description: article.excerpt,
+          slug: article.slug,
+          image: article.featuredImage || '/images/blog/placeholder.jpg',
+          publishedAt: article.publishedAt,
+          modifiedAt: article.publishedAt,
+          author: {
+            name: article.author,
+            jobTitle: 'Ketamine Association Editorial Team',
+          },
+          category: displayCategory,
+          tags: article.tags,
+        }}
+        type="Article"
+      />
+      <BreadcrumbSchema items={BlogBreadcrumbs(article.title, displayCategory)} />
+
+      <main className="min-h-screen bg-slate-50">
+        {/* Article Header */}
       <section className="bg-white border-b border-slate-200 py-12 md:py-16">
         <Container size="md">
           <Link
@@ -336,6 +359,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           </div>
         </Container>
       </section>
-    </main>
+      </main>
+    </>
   );
 }

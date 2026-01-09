@@ -38,7 +38,7 @@ export interface OrganizationSchema extends SchemaBase {
 }
 
 // Image Object Schema
-export interface ImageObjectSchema extends SchemaBase {
+export interface ImageObjectSchema {
   '@type': 'ImageObject';
   url: string;
   width?: number;
@@ -306,6 +306,8 @@ export interface OfferSchema {
   validFrom?: string;
   validThrough?: string;
   url?: string;
+  seller?: OrganizationSchema;
+  itemCondition?: string;
 }
 
 // Course Schema
