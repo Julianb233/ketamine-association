@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { cookies } from "next/headers";
+import { createClient } from "@/lib/supabase/server";
 
 interface RouteContext {
   params: Promise<{
@@ -8,23 +8,21 @@ interface RouteContext {
   }>;
 }
 
-// Placeholder auth check - replace with actual auth implementation
+// Get authenticated user from Supabase
 async function getAuthenticatedUser(): Promise<{ id: string; email: string } | null> {
-  const cookieStore = await cookies();
-  const sessionToken = cookieStore.get("session")?.value;
-
-  if (!sessionToken) {
-    return null;
-  }
-
   try {
-    const user = await prisma.user.findFirst({
-      where: {
-        id: sessionToken,
-      },
-      select: { id: true, email: true },
-    });
-    return user;
+    const supabase = await createClient();
+    const { data: { user: authUser } } = await supabase.auth.getUser();
+
+    if (!authUser) {
+      return null;
+    }
+
+    // Return user info from Supabase auth
+    return {
+      id: authUser.id,
+      email: authUser.email || "",
+    };
   } catch {
     return null;
   }

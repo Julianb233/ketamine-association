@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { prisma } from "@/lib/prisma";
 import { z } from "zod";
+import { sendEmail } from "@/lib/email";
+import { eventRegistrationEmail } from "@/lib/email-templates";
 
 // Validation schema for event registration
 const eventRegistrationSchema = z.object({
@@ -107,7 +109,45 @@ export async function POST(request: NextRequest) {
       },
     });
 
-    // TODO: Send confirmation email
+    // Send confirmation email
+    try {
+      const isVirtual = event.isVirtual ?? false;
+      const eventDate = event.startDate.toLocaleDateString('en-US', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      });
+      const eventTime = event.startDate.toLocaleTimeString('en-US', {
+        hour: 'numeric',
+        minute: '2-digit',
+        timeZoneName: 'short',
+      });
+
+      const emailContent = eventRegistrationEmail({
+        name: `${firstName} ${lastName}`,
+        email: email.toLowerCase(),
+        eventTitle: event.title,
+        eventDate,
+        eventTime,
+        eventLocation: event.location ?? undefined,
+        virtualUrl: event.virtualUrl ?? undefined,
+        isVirtual,
+        registrationId: registration.id,
+        eventDescription: event.description ?? undefined,
+      });
+
+      await sendEmail({
+        to: email.toLowerCase(),
+        subject: emailContent.subject,
+        html: emailContent.html,
+        text: emailContent.text,
+      });
+    } catch (emailError) {
+      // Log the error but don't fail the registration
+      console.error("Failed to send event registration confirmation email:", emailError);
+    }
+
     // TODO: Process payment if needed (Stripe integration)
 
     return NextResponse.json(

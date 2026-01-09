@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <linearGradient id="prodBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f0fdfa"/>
+      <stop offset="100%" style="stop-color:#ccfbf1"/>
+    </linearGradient>
+    <linearGradient id="prodIconGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#14B8A6"/>
+      <stop offset="100%" style="stop-color:#0D9488"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="400" fill="url(#prodBgGrad)"/>
+
+  <!-- Product box icon -->
+  <g transform="translate(120, 100)">
+    <!-- Box body -->
+    <path d="M80 40 L160 80 L160 180 L80 220 L0 180 L0 80 Z" fill="url(#prodIconGrad)" opacity="0.8"/>
+    <!-- Box top -->
+    <path d="M80 40 L160 80 L80 120 L0 80 Z" fill="#14B8A6"/>
+    <!-- Box front highlight -->
+    <path d="M80 120 L160 80 L160 180 L80 220 Z" fill="#0D9488" opacity="0.9"/>
+    <!-- Box left side -->
+    <path d="M0 80 L80 120 L80 220 L0 180 Z" fill="#0F766E" opacity="0.7"/>
+    <!-- Ribbon -->
+    <path d="M80 0 L80 120 M60 20 L100 20 M55 10 L80 35 L105 10" stroke="#ffffff" stroke-width="4" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <!-- Text -->
+  <text x="200" y="350" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="500" fill="#0D9488" text-anchor="middle">Product Image</text>
+</svg>

@@ -119,7 +119,7 @@ export async function GET(request: NextRequest) {
       price: product.price,
       compareAtPrice: product.compareAtPrice,
       category: product.category,
-      image: product.images[0] || '/images/placeholder-product.jpg',
+      image: product.images[0] || '/images/placeholder-product.svg',
       images: product.images,
       inStock: product.inventory > 0 || product.isDigital,
       inventory: product.inventory,

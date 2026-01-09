@@ -3,6 +3,13 @@ import { createClient } from "@/lib/supabase/server";
 import { prisma } from "@/lib/prisma";
 import { articlesQuerySchema, createArticleSchema } from "@/lib/validations";
 import { MEMBERSHIP_TIERS } from "@/lib/stripe";
+import {
+  getPaginatedArticles,
+  getAllCategories,
+  getAllTags,
+  searchArticles as searchMarkdownArticles,
+  CATEGORY_DISPLAY_NAMES,
+} from "@/lib/articles";
 
 // Type for article where clause
 interface ArticleWhereInput {
@@ -34,9 +41,33 @@ interface ArticleWithPractitioner {
 }
 
 // GET: List published articles with category filter
+// Supports both database articles and markdown articles
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
+    const source = searchParams.get("source") || "markdown"; // "markdown" or "database"
+    const category = searchParams.get("category");
+    const search = searchParams.get("search");
+    const page = parseInt(searchParams.get("page") || "1", 10);
+    const limit = parseInt(searchParams.get("limit") || "10", 10);
+
+    // Serve markdown articles (default)
+    if (source === "markdown") {
+      const result = await getPaginatedArticles(
+        page,
+        limit,
+        category || undefined,
+        search || undefined
+      );
+
+      return NextResponse.json({
+        articles: result.articles,
+        pagination: result.pagination,
+        source: "markdown",
+      });
+    }
+
+    // Original database-based article fetching
     const queryParams = Object.fromEntries(searchParams.entries());
 
     // Validate query parameters
@@ -48,22 +79,22 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    const { page, limit, category, practitionerId } = validationResult.data;
+    const { page: dbPage, limit: dbLimit, category: dbCategory, practitionerId } = validationResult.data;
 
     // Build where clause - using Record<string, unknown> to avoid Prisma type conflicts
     const where: Record<string, unknown> = {
       status: "PUBLISHED",
     };
 
-    if (category) {
-      where.category = category;
+    if (dbCategory) {
+      where.category = dbCategory;
     }
 
     if (practitionerId) {
       where.practitionerId = practitionerId;
     }
 
-    const skip = (page - 1) * limit;
+    const skip = (dbPage - 1) * dbLimit;
 
     // Fetch articles with count
     const [articles, total] = await Promise.all([
@@ -93,7 +124,7 @@ export async function GET(request: NextRequest) {
         },
         orderBy: { publishedAt: "desc" },
         skip,
-        take: limit,
+        take: dbLimit,
       }),
       prisma.article.count({ where }),
     ]);
@@ -105,7 +136,7 @@ export async function GET(request: NextRequest) {
       title: article.title,
       excerpt: article.excerpt,
       featuredImage: article.featuredImage,
-      category: article.category,
+      category: CATEGORY_DISPLAY_NAMES[article.category] || article.category,
       tags: article.tags,
       publishedAt: article.publishedAt,
       views: article.views,
@@ -123,12 +154,13 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({
       articles: formattedArticles,
       pagination: {
-        page,
-        limit,
+        page: dbPage,
+        limit: dbLimit,
         total,
-        totalPages: Math.ceil(total / limit),
+        totalPages: Math.ceil(total / dbLimit),
         hasMore: skip + articles.length < total,
       },
+      source: "database",
     });
   } catch (error) {
     console.error("Error fetching articles:", error);

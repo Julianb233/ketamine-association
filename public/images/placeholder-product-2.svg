@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <linearGradient id="prod2BgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f0fdfa"/>
+      <stop offset="100%" style="stop-color:#ccfbf1"/>
+    </linearGradient>
+    <linearGradient id="prod2IconGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#14B8A6"/>
+      <stop offset="100%" style="stop-color:#0D9488"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="400" fill="url(#prod2BgGrad)"/>
+
+  <!-- Open book icon -->
+  <g transform="translate(80, 110)">
+    <!-- Left page -->
+    <path d="M120 0 C60 10, 20 30, 0 60 L0 160 C20 130, 60 110, 120 100 Z" fill="url(#prod2IconGrad)" opacity="0.9"/>
+    <!-- Right page -->
+    <path d="M120 0 C180 10, 220 30, 240 60 L240 160 C220 130, 180 110, 120 100 Z" fill="#0D9488"/>
+    <!-- Spine -->
+    <rect x="115" y="0" width="10" height="100" fill="#0F766E"/>
+    <!-- Page lines left -->
+    <line x1="20" y1="80" x2="100" y2="65" stroke="white" stroke-width="2" opacity="0.4"/>
+    <line x1="20" y1="100" x2="100" y2="85" stroke="white" stroke-width="2" opacity="0.4"/>
+    <line x1="20" y1="120" x2="100" y2="105" stroke="white" stroke-width="2" opacity="0.4"/>
+    <!-- Page lines right -->
+    <line x1="140" y1="65" x2="220" y2="80" stroke="white" stroke-width="2" opacity="0.4"/>
+    <line x1="140" y1="85" x2="220" y2="100" stroke="white" stroke-width="2" opacity="0.4"/>
+    <line x1="140" y1="105" x2="220" y2="120" stroke="white" stroke-width="2" opacity="0.4"/>
+  </g>
+
+  <!-- Text -->
+  <text x="200" y="350" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="500" fill="#0D9488" text-anchor="middle">Product Detail</text>
+</svg>

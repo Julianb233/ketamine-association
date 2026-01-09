@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="providerBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ccfbf1"/>
+      <stop offset="100%" style="stop-color:#99f6e4"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background circle -->
+  <circle cx="100" cy="100" r="100" fill="url(#providerBgGrad)"/>
+
+  <!-- Person silhouette -->
+  <circle cx="100" cy="70" r="30" fill="#0D9488" opacity="0.5"/>
+  <ellipse cx="100" cy="145" rx="45" ry="35" fill="#0D9488" opacity="0.5"/>
+
+  <!-- Stethoscope icon -->
+  <circle cx="130" cy="120" r="15" fill="none" stroke="#14B8A6" stroke-width="2"/>
+  <path d="M115 115 L105 100" stroke="#14B8A6" stroke-width="2" stroke-linecap="round"/>
+</svg>

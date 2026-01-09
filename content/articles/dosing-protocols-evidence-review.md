@@ -1,18 +1,52 @@
 ---
-title: "Evidence-Based Dosing Protocols: A Comprehensive Review for Practitioners"
+title: "Evidence-Based Ketamine Dosing Protocols for Practitioners"
 slug: "dosing-protocols-evidence-review"
-excerpt: "A thorough examination of current evidence supporting ketamine dosing protocols across administration routes, including IV, IM, sublingual, and intranasal delivery methods. This review provides practitioners with actionable guidance on dose adjustments based on patient-specific factors."
+excerpt: "Comprehensive guide to ketamine dosing protocols across IV, IM, sublingual, and intranasal routes. Evidence-based recommendations for depression, anxiety, and chronic pain treatment."
 category: "CLINICAL_PRACTICE"
 author: "Ketamine Association Editorial Team"
 publishedAt: "2026-01-08"
-featuredImage: "/images/articles/placeholder.jpg"
-tags: ["practitioners", "ketamine", "dosing", "protocols", "evidence-based", "clinical"]
+updatedAt: "2026-01-08"
+featuredImage: "/images/articles/dosing-protocols-evidence-review.jpg"
+tags: ["ketamine dosing", "IV ketamine protocol", "ketamine for depression", "clinical practice", "treatment protocols", "practitioners"]
+keywords: ["ketamine dosing protocol", "IV ketamine dose", "ketamine infusion rate", "sublingual ketamine dosing", "intranasal ketamine", "ketamine mg/kg", "treatment-resistant depression protocol", "ketamine administration routes"]
+metaTitle: "Ketamine Dosing Protocols: Evidence-Based Guide for Practitioners | Ketamine Association"
+metaDescription: "Master ketamine dosing with our evidence-based protocol guide. Learn optimal IV, IM, sublingual & intranasal doses for depression, anxiety & chronic pain treatment."
+canonicalUrl: "https://ketamineassociation.org/blog/dosing-protocols-evidence-review"
+ogTitle: "Evidence-Based Ketamine Dosing Protocols | Clinical Guide"
+ogDescription: "Complete practitioner guide to ketamine dosing across all administration routes. Evidence-based protocols for treatment-resistant depression and chronic pain."
+ogImage: "/images/og/dosing-protocols-evidence-review.jpg"
+twitterCard: "summary_large_image"
+schema:
+  type: "Article"
+  datePublished: "2026-01-08"
+  dateModified: "2026-01-08"
+  author: "Ketamine Association Editorial Team"
+readingTime: "18 min read"
+wordCount: 4200
 audience: "practitioners"
+relatedArticles:
+  - "patient-screening-assessment"
+  - "treatment-resistant-depression-protocols"
+  - "managing-dissociative-experiences"
+  - "treatment-failure-optimization"
 ---
 
 # Evidence-Based Dosing Protocols: A Comprehensive Review for Practitioners
 
 The therapeutic application of ketamine for mood disorders, chronic pain, and other indications requires precise dosing strategies that balance efficacy with safety. As ketamine therapy continues to evolve, practitioners must stay current with evidence-based protocols while maintaining flexibility to adjust for individual patient needs. This comprehensive review synthesizes current research and clinical experience to provide actionable dosing guidance across administration routes.
+
+## Table of Contents
+
+- [Understanding Ketamine Pharmacokinetics](#understanding-ketamine-pharmacokinetics)
+- [Intravenous (IV) Dosing Protocols](#intravenous-iv-dosing-protocols)
+- [Intramuscular (IM) Dosing Protocols](#intramuscular-im-dosing-protocols)
+- [Sublingual (SL) Dosing Protocols](#sublingual-sl-dosing-protocols)
+- [Intranasal (IN) Dosing Protocols](#intranasal-in-dosing-protocols)
+- [Patient-Specific Dose Adjustments](#patient-specific-dose-adjustments)
+- [Dosing Protocols by Indication](#dosing-protocols-by-indication)
+- [Monitoring During Dose Administration](#monitoring-during-dose-administration)
+- [Special Populations](#special-populations)
+- [Clinical Takeaways](#clinical-takeaways)
 
 ## Understanding Ketamine Pharmacokinetics
 
@@ -32,6 +66,8 @@ Before establishing dosing protocols, practitioners must understand ketamine's p
 | Duration (IV) | 45-90 minutes | Treatment session length |
 
 Understanding these parameters helps practitioners predict onset, duration, and intensity of effects, enabling appropriate scheduling and monitoring protocols.
+
+> **Related Reading:** Before administering ketamine, ensure proper patient selection with our guide on [Patient Screening and Assessment](/blog/patient-screening-assessment).
 
 ## Intravenous (IV) Dosing Protocols
 
@@ -68,6 +104,8 @@ For treatment-naive patients, a conservative approach is recommended:
 - Reduce by 0.1 mg/kg
 - Extend infusion time to 60 minutes
 - Consider adjunctive anxiolytic premedication
+
+For more on managing non-responders, see our guide on [Treatment Failure Optimization](/blog/treatment-failure-optimization).
 
 ### IV Dosing for Chronic Pain
 
@@ -234,6 +272,8 @@ This approach prevents relative overdosing in obese patients while ensuring adeq
 - Monitor for cardiovascular effects more closely
 - Cognitive effects may be more pronounced
 
+For detailed guidance on geriatric patients, see [Ketamine in Special Populations: Elderly and Adolescent Patients](/blog/special-populations-elderly-adolescent).
+
 **Younger Adults (18-25)**:
 - Standard dosing generally appropriate
 - May have faster metabolism
@@ -286,6 +326,8 @@ This approach prevents relative overdosing in obese patients while ensuring adeq
 - Same dose as effective induction dose
 - Consider SL for appropriate patients
 
+For comprehensive TRD protocols, see [Treating Treatment-Resistant Depression: Advanced Protocol Considerations](/blog/treatment-resistant-depression-protocols).
+
 ### Acute Suicidal Ideation
 
 **Emergency Department Protocol**:
@@ -329,6 +371,8 @@ This approach prevents relative overdosing in obese patients while ensuring adeq
 | 45 min | BP, HR | Any significant change |
 | 60 min | BP, HR, SpO2 | Recovery to baseline |
 | 90 min | BP, HR, mental status | Discharge readiness |
+
+For detailed monitoring guidance, see [Managing Dissociative Experiences: A Clinical Guide](/blog/managing-dissociative-experiences).
 
 ### Response Assessment Tools
 
@@ -412,7 +456,45 @@ This approach prevents relative overdosing in obese patients while ensuring adeq
 
 ---
 
+## Frequently Asked Questions
+
+### What is the standard ketamine dose for depression?
+
+The standard IV ketamine dose for treatment-resistant depression is 0.5 mg/kg infused over 40 minutes. This protocol is derived from landmark clinical trials and produces optimal NMDA receptor modulation while minimizing side effects. Doses may be adjusted between 0.3-1.0 mg/kg based on individual response and tolerability.
+
+### How often should ketamine infusions be given?
+
+During the induction phase, ketamine infusions are typically administered 2-3 times per week for 2-3 weeks (6 total treatments). For maintenance, frequency varies from weekly to every 2-4 weeks based on individual response. Some patients maintain remission with monthly treatments.
+
+### What is the difference between IV and intranasal ketamine dosing?
+
+IV ketamine has 100% bioavailability versus 25-50% for intranasal. IV allows real-time dose titration and more predictable effects, while intranasal (including FDA-approved esketamine/Spravato) offers a non-invasive option. Intranasal typically requires 56-84 mg of esketamine compared to weight-based IV dosing.
+
+### Can ketamine doses be adjusted during treatment?
+
+Yes, ketamine doses should be individualized based on response and tolerability. For inadequate response, doses may be increased by 0.1 mg/kg increments up to 1.0 mg/kg. For excessive dissociation, doses can be reduced or infusion times extended to 60-90 minutes.
+
+---
+
 *This article represents current evidence as of publication date. Practitioners should consult primary literature and relevant clinical guidelines for the most current recommendations. Individual patient care decisions should incorporate clinical judgment and patient-specific factors.*
+
+---
+
+## Ready to Expand Your Ketamine Practice?
+
+<div class="cta-box">
+
+### Find a Ketamine Provider
+Looking to refer a patient or find a qualified ketamine provider in your area? Use our [Provider Directory](/find-provider) to connect with certified practitioners.
+
+### Join the Ketamine Association
+Stay current with the latest protocols, research, and best practices. [Become a member](/membership) to access exclusive clinical resources, continuing education, and our practitioner community.
+
+[Join Now](/membership) | [Find a Provider](/find-provider)
+
+</div>
+
+---
 
 ## References
 

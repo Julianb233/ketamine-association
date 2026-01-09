@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { Prisma } from "@prisma/client";
 
 const DEFAULT_PAGE_SIZE = 10;
 const MAX_PAGE_SIZE = 50;
@@ -29,6 +30,57 @@ const CONDITION_TYPES = [
 type TreatmentType = (typeof TREATMENT_TYPES)[number];
 type ConditionType = (typeof CONDITION_TYPES)[number];
 
+// Helper to categorize errors for better error messages
+function categorizeError(error: unknown): { message: string; status: number } {
+  // Check for connection errors first (in error message or name)
+  if (error instanceof Error) {
+    const errorMessage = error.message.toLowerCase();
+    const errorName = error.name || "";
+
+    if (
+      errorMessage.includes("can't reach database") ||
+      errorMessage.includes("connection refused") ||
+      errorMessage.includes("econnrefused") ||
+      errorMessage.includes("timeout") ||
+      errorMessage.includes("connection timed out") ||
+      errorName.includes("PrismaClientInitializationError")
+    ) {
+      return {
+        message: "Database temporarily unavailable. Please try again later.",
+        status: 503,
+      };
+    }
+  }
+
+  if (error instanceof Prisma.PrismaClientKnownRequestError) {
+    // Handle known Prisma errors
+    switch (error.code) {
+      case "P2002":
+        return { message: "A unique constraint was violated", status: 400 };
+      case "P2025":
+        return { message: "Record not found", status: 404 };
+      default:
+        return { message: `Database error: ${error.code}`, status: 500 };
+    }
+  }
+
+  if (error instanceof Prisma.PrismaClientInitializationError) {
+    return {
+      message: "Unable to connect to database. Please try again later.",
+      status: 503,
+    };
+  }
+
+  if (error instanceof Prisma.PrismaClientValidationError) {
+    return { message: "Invalid query parameters", status: 400 };
+  }
+
+  return {
+    message: error instanceof Error ? error.message : "An unexpected error occurred",
+    status: 500,
+  };
+}
+
 export async function GET(request: NextRequest) {
   try {
     const searchParams = request.nextUrl.searchParams;
@@ -44,9 +96,8 @@ export async function GET(request: NextRequest) {
       Math.max(1, parseInt(searchParams.get("limit") || String(DEFAULT_PAGE_SIZE), 10))
     );
 
-    // Build where clause
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const where: Record<string, any> = {
+    // Build where clause with proper Prisma typing
+    const where: Prisma.PractitionerWhereInput = {
       isVerified: true,
       membershipStatus: "ACTIVE",
     };
@@ -92,14 +143,28 @@ export async function GET(request: NextRequest) {
     // Calculate pagination
     const skip = (page - 1) * limit;
 
-    // Execute queries in parallel
-    const [providers, total] = await Promise.all([
+    // Execute queries in parallel with timeout
+    const timeoutMs = 10000; // 10 second timeout
+    const queryPromise = Promise.all([
       prisma.practitioner.findMany({
         where,
         include: {
-          treatments: true,
-          conditions: true,
+          treatments: {
+            select: {
+              treatmentType: true,
+            },
+          },
+          conditions: {
+            select: {
+              condition: true,
+            },
+          },
           certifications: {
+            select: {
+              certificationType: true,
+              issuedAt: true,
+              expiresAt: true,
+            },
             orderBy: { issuedAt: "desc" },
           },
         },
@@ -117,14 +182,38 @@ export async function GET(request: NextRequest) {
       prisma.practitioner.count({ where }),
     ]);
 
+    const timeoutPromise = new Promise<never>((_, reject) =>
+      setTimeout(() => reject(new Error("Query timeout")), timeoutMs)
+    );
+
+    const [providers, total] = await Promise.race([queryPromise, timeoutPromise]);
+
+    // Handle empty database gracefully
+    if (providers.length === 0 && total === 0) {
+      return NextResponse.json({
+        success: true,
+        data: {
+          providers: [],
+          pagination: {
+            page,
+            limit,
+            total: 0,
+            totalPages: 0,
+            hasNextPage: false,
+            hasPreviousPage: false,
+          },
+        },
+        message: "No providers found matching your criteria",
+      });
+    }
+
     // Calculate pagination metadata
     const totalPages = Math.ceil(total / limit);
     const hasNextPage = page < totalPages;
     const hasPreviousPage = page > 1;
 
     // Transform providers for response
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const transformedProviders = providers.map((provider: any) => ({
+    const transformedProviders = providers.map((provider) => ({
       id: provider.id,
       slug: provider.slug,
       title: provider.title,
@@ -141,9 +230,9 @@ export async function GET(request: NextRequest) {
       reviewCount: provider.reviewCount,
       membershipTier: provider.membershipTier,
       isVerified: provider.isVerified,
-      treatments: provider.treatments.map((t: { treatmentType: string }) => t.treatmentType),
-      conditions: provider.conditions.map((c: { condition: string }) => c.condition),
-      certifications: provider.certifications.map((cert: { certificationType: string; issuedAt: Date; expiresAt: Date | null }) => ({
+      treatments: provider.treatments.map((t) => t.treatmentType),
+      conditions: provider.conditions.map((c) => c.condition),
+      certifications: provider.certifications.map((cert) => ({
         type: cert.certificationType,
         issuedAt: cert.issuedAt,
         expiresAt: cert.expiresAt,
@@ -166,13 +255,19 @@ export async function GET(request: NextRequest) {
     });
   } catch (error) {
     console.error("Provider search error:", error);
+
+    const { message, status } = categorizeError(error);
+
     return NextResponse.json(
       {
         success: false,
         error: "Failed to search providers",
-        message: error instanceof Error ? error.message : "Unknown error",
+        message,
+        ...(process.env.NODE_ENV === "development" && {
+          debug: error instanceof Error ? error.stack : String(error),
+        }),
       },
-      { status: 500 }
+      { status }
     );
   }
 }

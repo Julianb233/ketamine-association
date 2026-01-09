@@ -1,35 +1,28 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { createCheckoutSession, MEMBERSHIP_TIERS, MembershipTier } from "@/lib/stripe";
-import { cookies } from "next/headers";
+import { createClient } from "@/lib/supabase/server";
 
 interface CheckoutMembershipBody {
   tier: string;
   billingCycle: "monthly" | "annual";
 }
 
-// Placeholder auth check - replace with actual auth implementation
+// Get authenticated user from Supabase
 async function getAuthenticatedUser(): Promise<{ id: string; email: string } | null> {
-  // TODO: Replace with actual authentication check
-  // This could use NextAuth, Clerk, custom JWT, etc.
-  const cookieStore = await cookies();
-  const sessionToken = cookieStore.get("session")?.value;
-
-  if (!sessionToken) {
-    return null;
-  }
-
-  // For now, we'll look up the user from a simple session
-  // In production, verify the session token properly
   try {
-    const user = await prisma.user.findFirst({
-      where: {
-        // This is a placeholder - implement proper session lookup
-        id: sessionToken,
-      },
-      select: { id: true, email: true },
-    });
-    return user;
+    const supabase = await createClient();
+    const { data: { user: authUser } } = await supabase.auth.getUser();
+
+    if (!authUser) {
+      return null;
+    }
+
+    // Return user info from Supabase auth
+    return {
+      id: authUser.id,
+      email: authUser.email || "",
+    };
   } catch {
     return null;
   }

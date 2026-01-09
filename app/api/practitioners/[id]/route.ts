@@ -167,7 +167,7 @@ export async function PATCH(request: NextRequest, { params }: RouteParams) {
       );
     }
 
-    // Get user from our database using Clerk userId
+    // Get user from our database using Supabase userId
     const user = await prisma.user.findFirst({
       where: {
         id: userId,
