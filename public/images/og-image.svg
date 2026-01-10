@@ -1,0 +1,49 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background gradient -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0F7A7A;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#149999;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#10B981;stop-opacity:1" />
+    </linearGradient>
+    <pattern id="pattern" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z" fill="rgba(255,255,255,0.08)"/>
+    </pattern>
+  </defs>
+
+  <!-- Main background -->
+  <rect width="1200" height="630" fill="url(#bgGradient)"/>
+
+  <!-- Pattern overlay -->
+  <rect width="1200" height="630" fill="url(#pattern)"/>
+
+  <!-- Logo circle -->
+  <circle cx="600" cy="200" r="80" fill="rgba(255,255,255,0.2)"/>
+  <circle cx="600" cy="200" r="65" fill="white"/>
+
+  <!-- KA Letters -->
+  <text x="600" y="220" font-family="Inter, Arial, sans-serif" font-size="48" font-weight="bold" fill="#0F7A7A" text-anchor="middle">KA</text>
+
+  <!-- Main title -->
+  <text x="600" y="340" font-family="Inter, Arial, sans-serif" font-size="56" font-weight="bold" fill="white" text-anchor="middle">Ketamine Association</text>
+
+  <!-- Tagline -->
+  <text x="600" y="400" font-family="Inter, Arial, sans-serif" font-size="28" fill="rgba(255,255,255,0.9)" text-anchor="middle">Education • Certification • Connection</text>
+
+  <!-- Description -->
+  <text x="600" y="480" font-family="Inter, Arial, sans-serif" font-size="22" fill="rgba(255,255,255,0.8)" text-anchor="middle">The nation's leading association for ketamine therapy practitioners</text>
+
+  <!-- Bottom stats bar -->
+  <rect x="0" y="540" width="1200" height="90" fill="rgba(0,0,0,0.2)"/>
+
+  <!-- Stats -->
+  <text x="200" y="595" font-family="Inter, Arial, sans-serif" font-size="20" fill="white" text-anchor="middle">500+ Verified Providers</text>
+  <text x="450" y="595" font-family="Inter, Arial, sans-serif" font-size="20" fill="white" text-anchor="middle">50,000+ Patients Helped</text>
+  <text x="750" y="595" font-family="Inter, Arial, sans-serif" font-size="20" fill="white" text-anchor="middle">98% Satisfaction Rate</text>
+  <text x="1000" y="595" font-family="Inter, Arial, sans-serif" font-size="20" fill="white" text-anchor="middle">50 States Covered</text>
+
+  <!-- Dividers -->
+  <line x1="325" y1="565" x2="325" y2="615" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+  <line x1="600" y1="565" x2="600" y2="615" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+  <line x1="875" y1="565" x2="875" y2="615" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+</svg>
