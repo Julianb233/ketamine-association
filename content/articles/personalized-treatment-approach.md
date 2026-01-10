@@ -5,7 +5,7 @@ excerpt: "No two patients respond to ketamine in exactly the same way. The most 
 category: "TREATMENT_INNOVATIONS"
 author: "Ketamine Association Editorial Team"
 publishedAt: "2026-01-08"
-featuredImage: "/images/articles/placeholder.jpg"
+featuredImage: "/images/articles/personalized-treatment-approach.svg"
 tags: ["ketamine", "personalized medicine", "treatment optimization", "dosing", "mental health"]
 ---
 

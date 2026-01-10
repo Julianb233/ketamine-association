@@ -5,7 +5,7 @@ excerpt: "A comprehensive guide to clinical documentation standards for ketamine
 category: "PRACTICE_MANAGEMENT"
 author: "Ketamine Association Editorial Team"
 publishedAt: "2026-01-08"
-featuredImage: "/images/articles/placeholder.jpg"
+featuredImage: "/images/articles/clinical-documentation-standards.svg"
 tags: ["practitioners", "ketamine", "documentation", "compliance", "billing", "records"]
 audience: "practitioners"
 ---

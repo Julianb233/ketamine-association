@@ -5,7 +5,7 @@ excerpt: "A comprehensive guide to integrating psychotherapy with ketamine treat
 category: "CLINICAL_PRACTICE"
 author: "Ketamine Association Editorial Team"
 publishedAt: "2026-01-08"
-featuredImage: "/images/articles/placeholder.jpg"
+featuredImage: "/images/articles/combining-ketamine-psychotherapy.svg"
 tags: ["practitioners", "ketamine", "psychotherapy", "KAP", "integration", "clinical"]
 audience: "practitioners"
 ---

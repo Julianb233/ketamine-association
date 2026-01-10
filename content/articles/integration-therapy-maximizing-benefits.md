@@ -5,7 +5,7 @@ excerpt: "Ketamine opens a door, but integration therapy helps you walk through 
 category: "PATIENT_EDUCATION"
 author: "Ketamine Association Editorial Team"
 publishedAt: "2026-01-08"
-featuredImage: "/images/articles/placeholder.jpg"
+featuredImage: "/images/articles/integration-therapy-maximizing-benefits.svg"
 tags: ["ketamine", "integration therapy", "psychotherapy", "mental health", "lasting change"]
 ---
 

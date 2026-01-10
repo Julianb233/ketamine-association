@@ -6,7 +6,7 @@ category: "CLINICAL_RESEARCH"
 author: "Ketamine Association Editorial Team"
 publishedAt: "2026-01-08"
 updatedAt: "2026-01-08"
-featuredImage: "/images/articles/ketamine-vs-antidepressants-decade-research.jpg"
+featuredImage: "/images/articles/ketamine-vs-antidepressants-decade-research.svg"
 tags: ["ketamine comparison", "SSRIs", "antidepressants", "depression research", "treatment options", "mental health"]
 keywords: ["ketamine vs antidepressants", "ketamine vs SSRIs", "ketamine vs Prozac", "is ketamine better than antidepressants", "ketamine depression comparison", "rapid acting antidepressant", "treatment resistant depression options"]
 metaTitle: "Ketamine vs Antidepressants: Complete Research Comparison | Ketamine Association"
@@ -14,7 +14,7 @@ metaDescription: "Compare ketamine to traditional antidepressants. 10 years of r
 canonicalUrl: "https://ketamineassociation.org/blog/ketamine-vs-antidepressants-decade-research"
 ogTitle: "Ketamine vs Traditional Antidepressants: What the Research Shows"
 ogDescription: "How does ketamine compare to SSRIs and other antidepressants? Evidence-based comparison of mechanisms, efficacy, and when to consider each option."
-ogImage: "/images/og/ketamine-vs-antidepressants-decade-research.jpg"
+ogImage: "/images/articles/ketamine-vs-antidepressants-decade-research.svg"
 twitterCard: "summary_large_image"
 schema:
   type: "Article"

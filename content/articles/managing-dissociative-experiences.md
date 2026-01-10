@@ -5,7 +5,7 @@ excerpt: "A practical clinical guide to understanding, monitoring, and managing 
 category: "CLINICAL_PRACTICE"
 author: "Ketamine Association Editorial Team"
 publishedAt: "2026-01-08"
-featuredImage: "/images/articles/placeholder.jpg"
+featuredImage: "/images/articles/managing-dissociative-experiences.svg"
 tags: ["practitioners", "ketamine", "dissociation", "clinical-management", "safety"]
 audience: "practitioners"
 ---

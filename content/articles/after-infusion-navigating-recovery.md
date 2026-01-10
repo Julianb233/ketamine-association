@@ -5,7 +5,7 @@ excerpt: "The ketamine infusion is just the beginning. Learn what to expect in t
 category: "PATIENT_EDUCATION"
 author: "Ketamine Association Editorial Team"
 publishedAt: "2026-01-08"
-featuredImage: "/images/articles/placeholder.jpg"
+featuredImage: "/images/articles/after-infusion-navigating-recovery.svg"
 tags: ["ketamine", "recovery", "aftercare", "mental health", "follow-up care"]
 ---
 

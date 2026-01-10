@@ -5,7 +5,7 @@ excerpt: "Your mindset and environment profoundly influence your ketamine experi
 category: "PATIENT_EDUCATION"
 author: "Ketamine Association Editorial Team"
 publishedAt: "2026-01-08"
-featuredImage: "/images/articles/placeholder.jpg"
+featuredImage: "/images/articles/set-and-setting-preparation.svg"
 tags: ["ketamine", "set and setting", "preparation", "mindset", "mental health"]
 ---
 

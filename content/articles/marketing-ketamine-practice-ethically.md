@@ -5,7 +5,7 @@ excerpt: "A strategic guide for ketamine practitioners on building visibility an
 category: "PRACTICE_MANAGEMENT"
 author: "Ketamine Association Editorial Team"
 publishedAt: "2026-01-08"
-featuredImage: "/images/articles/placeholder.jpg"
+featuredImage: "/images/articles/marketing-ketamine-practice-ethically.svg"
 tags: ["practitioners", "ketamine", "business", "marketing", "ethics", "practice-growth"]
 audience: "practitioners"
 ---

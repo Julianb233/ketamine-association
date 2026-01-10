@@ -5,7 +5,7 @@ excerpt: "For many patients, the cost of ketamine therapy creates a significant 
 category: "INDUSTRY_REGULATORY"
 author: "Ketamine Association Editorial Team"
 publishedAt: "2026-01-08"
-featuredImage: "/images/articles/placeholder.jpg"
+featuredImage: "/images/articles/insurance-coverage-fight.svg"
 tags: ["ketamine", "insurance", "coverage", "healthcare costs", "advocacy", "Spravato"]
 ---
 

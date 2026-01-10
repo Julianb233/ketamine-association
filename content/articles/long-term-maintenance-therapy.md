@@ -5,7 +5,7 @@ excerpt: "An evidence-based guide to ketamine maintenance therapy for practition
 category: "ADVANCED_CLINICAL"
 author: "Ketamine Association Editorial Team"
 publishedAt: "2026-01-08"
-featuredImage: "/images/articles/placeholder.jpg"
+featuredImage: "/images/articles/long-term-maintenance-therapy.svg"
 tags: ["practitioners", "ketamine", "advanced", "maintenance-therapy", "long-term-treatment", "remission"]
 audience: "practitioners"
 ---

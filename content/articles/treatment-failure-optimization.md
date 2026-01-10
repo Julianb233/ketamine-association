@@ -5,7 +5,7 @@ excerpt: "A comprehensive clinical guide for practitioners managing ketamine non
 category: "ADVANCED_CLINICAL"
 author: "Ketamine Association Editorial Team"
 publishedAt: "2026-01-08"
-featuredImage: "/images/articles/placeholder.jpg"
+featuredImage: "/images/articles/treatment-failure-optimization.svg"
 tags: ["practitioners", "ketamine", "advanced", "non-responders", "optimization", "treatment-resistance"]
 audience: "practitioners"
 ---

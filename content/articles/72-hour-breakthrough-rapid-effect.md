@@ -6,7 +6,7 @@ category: "CLINICAL_RESEARCH"
 author: "Ketamine Association Editorial Team"
 publishedAt: "2026-01-08"
 updatedAt: "2026-01-08"
-featuredImage: "/images/articles/72-hour-breakthrough-rapid-effect.jpg"
+featuredImage: "/images/articles/72-hour-breakthrough-rapid-effect.svg"
 tags: ["rapid antidepressant", "ketamine mechanism", "depression treatment", "suicidal ideation", "clinical research", "mental health crisis"]
 keywords: ["ketamine rapid antidepressant", "how fast does ketamine work", "ketamine 72 hours", "ketamine suicidal ideation", "rapid acting antidepressant", "ketamine onset of action", "why ketamine works fast"]
 metaTitle: "Why Ketamine Works in 72 Hours: Rapid Antidepressant Science | Ketamine Association"
@@ -14,7 +14,7 @@ metaDescription: "Learn why ketamine produces antidepressant effects in 72 hours
 canonicalUrl: "https://ketamineassociation.org/blog/72-hour-breakthrough-rapid-effect"
 ogTitle: "The 72-Hour Breakthrough: Understanding Ketamine's Rapid Antidepressant Effect"
 ogDescription: "Discover the science behind ketamine's unprecedented speed: from infusion to relief in hours, not weeks. Evidence-based guide to rapid depression treatment."
-ogImage: "/images/og/72-hour-breakthrough-rapid-effect.jpg"
+ogImage: "/images/articles/72-hour-breakthrough-rapid-effect.svg"
 twitterCard: "summary_large_image"
 schema:
   type: "Article"

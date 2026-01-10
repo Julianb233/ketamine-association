@@ -6,7 +6,7 @@ category: "PATIENT_EDUCATION"
 author: "Ketamine Association Editorial Team"
 publishedAt: "2026-01-08"
 updatedAt: "2026-01-08"
-featuredImage: "/images/articles/is-ketamine-right-for-you.jpg"
+featuredImage: "/images/articles/is-ketamine-right-for-you.svg"
 tags: ["ketamine eligibility", "ketamine candidate", "treatment decision", "depression treatment options", "mental health", "patient guide"]
 keywords: ["am I candidate for ketamine", "who should get ketamine therapy", "ketamine contraindications", "ketamine eligibility requirements", "is ketamine safe for me", "ketamine treatment criteria", "ketamine therapy requirements"]
 metaTitle: "Is Ketamine Therapy Right for You? Eligibility Guide | Ketamine Association"
@@ -14,7 +14,7 @@ metaDescription: "Find out if you're a good candidate for ketamine therapy. Lear
 canonicalUrl: "https://ketamineassociation.org/blog/is-ketamine-right-for-you"
 ogTitle: "Is Ketamine Therapy Right for You? A Decision-Making Guide"
 ogDescription: "Comprehensive guide to evaluating whether ketamine therapy is appropriate for your situation. Understand candidacy criteria and make an informed decision."
-ogImage: "/images/og/is-ketamine-right-for-you.jpg"
+ogImage: "/images/articles/is-ketamine-right-for-you.svg"
 twitterCard: "summary_large_image"
 schema:
   type: "Article"

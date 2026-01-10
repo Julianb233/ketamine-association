@@ -5,7 +5,7 @@ excerpt: "Explore the emerging research on ketamine as a treatment for PTSD. Lea
 category: "CLINICAL_RESEARCH"
 author: "Ketamine Association Editorial Team"
 publishedAt: "2026-01-08"
-featuredImage: "/images/articles/placeholder.jpg"
+featuredImage: "/images/articles/ptsd-ketamine-trauma-research.svg"
 tags: ["ketamine", "PTSD", "trauma", "veterans", "fear extinction", "research"]
 ---
 

@@ -5,7 +5,7 @@ excerpt: "After eight years of chronic pain that stole her career, her relations
 category: "PATIENT_STORIES"
 author: "Ketamine Association Editorial Team"
 publishedAt: "2026-01-08"
-featuredImage: "/images/articles/placeholder.jpg"
+featuredImage: "/images/articles/chronic-pain-life-reclaimed.svg"
 tags: ["ketamine", "chronic pain", "patient story", "recovery", "pain management", "quality of life"]
 ---
 

@@ -5,7 +5,7 @@ excerpt: "As ketamine therapy expands, some practitioners are exploring whether 
 category: "TREATMENT_INNOVATIONS"
 author: "Ketamine Association Editorial Team"
 publishedAt: "2026-01-08"
-featuredImage: "/images/articles/placeholder.jpg"
+featuredImage: "/images/articles/microdosing-ketamine-protocols.svg"
 tags: ["ketamine", "microdosing", "research", "innovation", "mental health", "protocols"]
 ---
 

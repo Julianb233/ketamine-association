@@ -6,7 +6,7 @@ category: "CLINICAL_RESEARCH"
 author: "Ketamine Association Editorial Team"
 publishedAt: "2026-01-08"
 updatedAt: "2026-01-08"
-featuredImage: "/images/articles/science-of-hope-ketamine-brain.jpg"
+featuredImage: "/images/articles/science-of-hope-ketamine-brain.svg"
 tags: ["ketamine neuroscience", "BDNF", "neuroplasticity", "glutamate", "depression research", "brain science", "NMDA receptor"]
 keywords: ["how ketamine works brain", "ketamine neuroplasticity", "ketamine BDNF", "glutamate depression", "ketamine mechanism of action", "ketamine synaptogenesis", "NMDA receptor antagonist depression"]
 metaTitle: "How Ketamine Works in the Brain: Neuroplasticity & Depression | Ketamine Association"
@@ -14,7 +14,7 @@ metaDescription: "Learn the neuroscience of ketamine's rapid antidepressant effe
 canonicalUrl: "https://ketamineassociation.org/blog/science-of-hope-ketamine-brain"
 ogTitle: "The Science of Hope: How Ketamine Rewires the Depressed Brain"
 ogDescription: "Understanding ketamine's revolutionary mechanism: from glutamate surge to synapse formation in 24 hours. The neuroscience of rapid depression relief."
-ogImage: "/images/og/science-of-hope-ketamine-brain.jpg"
+ogImage: "/images/articles/science-of-hope-ketamine-brain.svg"
 twitterCard: "summary_large_image"
 schema:
   type: "Article"

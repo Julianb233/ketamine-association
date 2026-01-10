@@ -5,7 +5,7 @@ excerpt: "A comprehensive clinical guide to administering ketamine therapy in ge
 category: "ADVANCED_CLINICAL"
 author: "Ketamine Association Editorial Team"
 publishedAt: "2026-01-08"
-featuredImage: "/images/articles/placeholder.jpg"
+featuredImage: "/images/articles/special-populations-elderly-adolescent.svg"
 tags: ["practitioners", "ketamine", "advanced", "geriatric", "adolescent", "special-populations"]
 audience: "practitioners"
 ---

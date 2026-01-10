@@ -5,7 +5,7 @@ excerpt: "A strategic guide for ketamine practitioners on positioning their prac
 category: "PRACTICE_MANAGEMENT"
 author: "Ketamine Association Editorial Team"
 publishedAt: "2026-01-08"
-featuredImage: "/images/articles/placeholder.jpg"
+featuredImage: "/images/articles/future-proofing-practice-psychedelics.svg"
 tags: ["practitioners", "ketamine", "business", "psychedelics", "MDMA", "psilocybin", "future-planning"]
 audience: "practitioners"
 ---

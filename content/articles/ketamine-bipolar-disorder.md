@@ -5,7 +5,7 @@ excerpt: "An evidence-based clinical guide for practitioners treating bipolar de
 category: "ADVANCED_CLINICAL"
 author: "Ketamine Association Editorial Team"
 publishedAt: "2026-01-08"
-featuredImage: "/images/articles/placeholder.jpg"
+featuredImage: "/images/articles/ketamine-bipolar-disorder.svg"
 tags: ["practitioners", "ketamine", "advanced", "bipolar-disorder", "mood-disorders", "mania-risk"]
 audience: "practitioners"
 ---

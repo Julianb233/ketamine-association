@@ -5,7 +5,7 @@ excerpt: "A comprehensive guide to informed consent for ketamine therapy, coveri
 category: "PRACTICE_MANAGEMENT"
 author: "Ketamine Association Editorial Team"
 publishedAt: "2026-01-08"
-featuredImage: "/images/articles/placeholder.jpg"
+featuredImage: "/images/articles/informed-consent-best-practices.svg"
 tags: ["practitioners", "ketamine", "informed-consent", "legal", "risk-communication"]
 audience: "practitioners"
 ---

@@ -5,7 +5,7 @@ excerpt: "Ketamine-Assisted Psychotherapy (KAP) represents a powerful fusion of 
 category: "TREATMENT_INNOVATIONS"
 author: "Ketamine Association Editorial Team"
 publishedAt: "2026-01-08"
-featuredImage: "/images/articles/placeholder.jpg"
+featuredImage: "/images/articles/ketamine-assisted-psychotherapy.svg"
 tags: ["ketamine", "psychotherapy", "KAP", "mental health", "therapy", "treatment innovations"]
 ---
 

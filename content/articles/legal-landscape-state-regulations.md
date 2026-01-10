@@ -5,7 +5,7 @@ excerpt: "Navigating ketamine therapy regulations can be confusing, with rules v
 category: "INDUSTRY_REGULATORY"
 author: "Ketamine Association Editorial Team"
 publishedAt: "2026-01-08"
-featuredImage: "/images/articles/placeholder.jpg"
+featuredImage: "/images/articles/legal-landscape-state-regulations.svg"
 tags: ["ketamine", "regulations", "legal", "telehealth", "state laws", "off-label"]
 ---
 

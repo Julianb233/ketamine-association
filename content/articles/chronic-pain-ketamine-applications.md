@@ -5,7 +5,7 @@ excerpt: "While ketamine has gained attention for depression, its original medic
 category: "CLINICAL_RESEARCH"
 author: "Ketamine Association Editorial Team"
 publishedAt: "2026-01-08"
-featuredImage: "/images/articles/placeholder.jpg"
+featuredImage: "/images/articles/chronic-pain-ketamine-applications.svg"
 tags: ["ketamine", "chronic pain", "CRPS", "fibromyalgia", "neuropathic pain", "pain management"]
 ---
 

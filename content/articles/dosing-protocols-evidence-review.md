@@ -6,7 +6,7 @@ category: "CLINICAL_PRACTICE"
 author: "Ketamine Association Editorial Team"
 publishedAt: "2026-01-08"
 updatedAt: "2026-01-08"
-featuredImage: "/images/articles/dosing-protocols-evidence-review.jpg"
+featuredImage: "/images/articles/dosing-protocols-evidence-review.svg"
 tags: ["ketamine dosing", "IV ketamine protocol", "ketamine for depression", "clinical practice", "treatment protocols", "practitioners"]
 keywords: ["ketamine dosing protocol", "IV ketamine dose", "ketamine infusion rate", "sublingual ketamine dosing", "intranasal ketamine", "ketamine mg/kg", "treatment-resistant depression protocol", "ketamine administration routes"]
 metaTitle: "Ketamine Dosing Protocols: Evidence-Based Guide for Practitioners | Ketamine Association"
@@ -14,7 +14,7 @@ metaDescription: "Master ketamine dosing with our evidence-based protocol guide.
 canonicalUrl: "https://ketamineassociation.org/blog/dosing-protocols-evidence-review"
 ogTitle: "Evidence-Based Ketamine Dosing Protocols | Clinical Guide"
 ogDescription: "Complete practitioner guide to ketamine dosing across all administration routes. Evidence-based protocols for treatment-resistant depression and chronic pain."
-ogImage: "/images/og/dosing-protocols-evidence-review.jpg"
+ogImage: "/images/articles/dosing-protocols-evidence-review.svg"
 twitterCard: "summary_large_image"
 schema:
   type: "Article"

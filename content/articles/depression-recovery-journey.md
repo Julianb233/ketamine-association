@@ -5,7 +5,7 @@ excerpt: "After years of trying every antidepressant her doctors could prescribe
 category: "PATIENT_STORIES"
 author: "Ketamine Association Editorial Team"
 publishedAt: "2026-01-08"
-featuredImage: "/images/articles/placeholder.jpg"
+featuredImage: "/images/articles/depression-recovery-journey.svg"
 tags: ["ketamine", "depression", "patient story", "recovery", "mental health", "treatment-resistant"]
 ---
 

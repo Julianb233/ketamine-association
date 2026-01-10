@@ -6,7 +6,7 @@ category: "PATIENT_EDUCATION"
 author: "Ketamine Association Editorial Team"
 publishedAt: "2026-01-08"
 updatedAt: "2026-01-08"
-featuredImage: "/images/articles/first-ketamine-infusion-what-to-expect.jpg"
+featuredImage: "/images/articles/first-ketamine-infusion-what-to-expect.svg"
 tags: ["first ketamine infusion", "ketamine treatment", "patient guide", "what to expect", "ketamine preparation", "infusion therapy"]
 keywords: ["first ketamine infusion", "what to expect ketamine treatment", "ketamine therapy experience", "preparing for ketamine", "ketamine infusion side effects", "ketamine treatment process", "IV ketamine experience"]
 metaTitle: "Your First Ketamine Infusion: What to Expect | Complete Patient Guide"
@@ -14,7 +14,7 @@ metaDescription: "Complete guide to your first ketamine infusion. Learn how to p
 canonicalUrl: "https://ketamineassociation.org/blog/first-ketamine-infusion-what-to-expect"
 ogTitle: "Your First Ketamine Infusion: What to Expect from Start to Finish"
 ogDescription: "Everything you need to know about your first ketamine treatment - from preparation to recovery. Expert guide to help you feel prepared and confident."
-ogImage: "/images/og/first-ketamine-infusion-what-to-expect.jpg"
+ogImage: "/images/articles/first-ketamine-infusion-what-to-expect.svg"
 twitterCard: "summary_large_image"
 schema:
   type: "Article"

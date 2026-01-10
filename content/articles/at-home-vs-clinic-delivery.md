@@ -5,7 +5,7 @@ excerpt: "As ketamine therapy evolves, patients now have more choices than ever 
 category: "TREATMENT_INNOVATIONS"
 author: "Ketamine Association Editorial Team"
 publishedAt: "2026-01-08"
-featuredImage: "/images/articles/placeholder.jpg"
+featuredImage: "/images/articles/at-home-vs-clinic-delivery.svg"
 tags: ["ketamine", "delivery methods", "telehealth", "IV infusion", "sublingual", "nasal spray", "treatment options"]
 ---
 

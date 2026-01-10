@@ -6,7 +6,7 @@ category: "PRACTICE_MANAGEMENT"
 author: "Ketamine Association Editorial Team"
 publishedAt: "2026-01-08"
 updatedAt: "2026-01-08"
-featuredImage: "/images/articles/building-ketamine-practice-guide.jpg"
+featuredImage: "/images/articles/building-ketamine-practice-guide.svg"
 tags: ["ketamine practice", "practice management", "clinic setup", "DEA compliance", "ketamine business", "medical practice", "practitioners"]
 keywords: ["how to start ketamine clinic", "ketamine practice requirements", "ketamine clinic business plan", "DEA ketamine registration", "ketamine clinic equipment", "ketamine practice revenue", "starting ketamine infusion business"]
 metaTitle: "How to Start a Ketamine Practice: Complete Setup Guide | Ketamine Association"
@@ -14,7 +14,7 @@ metaDescription: "Everything you need to start a ketamine therapy practice. Equi
 canonicalUrl: "https://ketamineassociation.org/blog/building-ketamine-practice-guide"
 ogTitle: "Building a Ketamine Practice: Complete Guide for Practitioners"
 ogDescription: "Comprehensive guide to starting and running a ketamine therapy practice. From equipment and staffing to compliance and billing strategies."
-ogImage: "/images/og/building-ketamine-practice-guide.jpg"
+ogImage: "/images/articles/building-ketamine-practice-guide.svg"
 twitterCard: "summary_large_image"
 schema:
   type: "Article"

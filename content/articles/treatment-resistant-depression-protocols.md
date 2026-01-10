@@ -5,7 +5,7 @@ excerpt: "An in-depth examination of advanced ketamine protocols for treatment-r
 category: "CLINICAL_PRACTICE"
 author: "Ketamine Association Editorial Team"
 publishedAt: "2026-01-08"
-featuredImage: "/images/articles/placeholder.jpg"
+featuredImage: "/images/articles/treatment-resistant-depression-protocols.svg"
 tags: ["practitioners", "ketamine", "TRD", "depression", "protocols", "clinical"]
 audience: "practitioners"
 ---

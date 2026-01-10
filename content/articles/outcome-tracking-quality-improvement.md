@@ -5,7 +5,7 @@ excerpt: "A systematic guide for ketamine practitioners on implementing validate
 category: "PRACTICE_MANAGEMENT"
 author: "Ketamine Association Editorial Team"
 publishedAt: "2026-01-08"
-featuredImage: "/images/articles/placeholder.jpg"
+featuredImage: "/images/articles/outcome-tracking-quality-improvement.svg"
 tags: ["practitioners", "ketamine", "business", "quality-improvement", "outcome-tracking", "assessment"]
 audience: "practitioners"
 ---

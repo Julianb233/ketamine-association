@@ -5,7 +5,7 @@ excerpt: "A comprehensive operational guide for practitioners establishing telem
 category: "PRACTICE_MANAGEMENT"
 author: "Ketamine Association Editorial Team"
 publishedAt: "2026-01-08"
-featuredImage: "/images/articles/placeholder.jpg"
+featuredImage: "/images/articles/telemedicine-ketamine-protocols.svg"
 tags: ["practitioners", "ketamine", "business", "telemedicine", "at-home-treatment", "remote-care"]
 audience: "practitioners"
 ---

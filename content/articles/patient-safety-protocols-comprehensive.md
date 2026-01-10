@@ -5,7 +5,7 @@ excerpt: "An essential guide to developing and implementing robust patient safet
 category: "PRACTICE_MANAGEMENT"
 author: "Ketamine Association Editorial Team"
 publishedAt: "2026-01-08"
-featuredImage: "/images/articles/placeholder.jpg"
+featuredImage: "/images/articles/patient-safety-protocols-comprehensive.svg"
 tags: ["practitioners", "ketamine", "safety", "protocols", "emergency", "monitoring"]
 audience: "practitioners"
 ---

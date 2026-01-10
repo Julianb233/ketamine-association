@@ -5,7 +5,7 @@ excerpt: "Ketamine has pioneered the path for psychedelic-assisted therapy, demo
 category: "INDUSTRY_REGULATORY"
 author: "Ketamine Association Editorial Team"
 publishedAt: "2026-01-08"
-featuredImage: "/images/articles/placeholder.jpg"
+featuredImage: "/images/articles/future-psychedelic-medicine.svg"
 tags: ["ketamine", "psychedelics", "MDMA", "psilocybin", "mental health", "future", "research"]
 ---
 

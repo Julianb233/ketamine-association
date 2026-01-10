@@ -6,7 +6,7 @@ category: "PATIENT_STORIES"
 author: "Ketamine Association Editorial Team"
 publishedAt: "2026-01-08"
 updatedAt: "2026-01-08"
-featuredImage: "/images/articles/veteran-ptsd-healing.jpg"
+featuredImage: "/images/articles/veteran-ptsd-healing.svg"
 tags: ["ketamine PTSD", "veteran mental health", "military trauma", "PTSD treatment", "patient story", "trauma therapy"]
 keywords: ["ketamine for veterans", "veteran PTSD treatment", "ketamine therapy military trauma", "treatment-resistant PTSD", "veteran mental health ketamine", "PTSD ketamine success story", "military PTSD treatment options"]
 metaTitle: "Ketamine for Veteran PTSD: When Nothing Else Works | Ketamine Association"
@@ -14,7 +14,7 @@ metaDescription: "Discover how ketamine therapy is helping veterans with treatme
 canonicalUrl: "https://ketamineassociation.org/blog/veteran-ptsd-healing"
 ogTitle: "A Veteran's Path to Healing: How Ketamine Helped When Nothing Else Could"
 ogDescription: "After three deployments and years of treatment-resistant PTSD, many veterans are finding unexpected relief through ketamine therapy. Read their stories."
-ogImage: "/images/og/veteran-ptsd-healing.jpg"
+ogImage: "/images/articles/veteran-ptsd-healing.svg"
 twitterCard: "summary_large_image"
 schema:
   type: "Article"

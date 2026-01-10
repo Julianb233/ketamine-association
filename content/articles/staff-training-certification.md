@@ -5,7 +5,7 @@ excerpt: "A comprehensive guide to staff training and certification requirements
 category: "PRACTICE_MANAGEMENT"
 author: "Ketamine Association Editorial Team"
 publishedAt: "2026-01-08"
-featuredImage: "/images/articles/placeholder.jpg"
+featuredImage: "/images/articles/staff-training-certification.svg"
 tags: ["practitioners", "ketamine", "training", "certification", "staff", "competency"]
 audience: "practitioners"
 ---

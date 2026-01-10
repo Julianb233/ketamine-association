@@ -5,7 +5,7 @@ excerpt: "A clinical guide for practitioners treating patients with depression a
 category: "ADVANCED_CLINICAL"
 author: "Ketamine Association Editorial Team"
 publishedAt: "2026-01-08"
-featuredImage: "/images/articles/placeholder.jpg"
+featuredImage: "/images/articles/comorbidity-management-anxiety-ocd.svg"
 tags: ["practitioners", "ketamine", "advanced", "anxiety", "ocd", "comorbidities"]
 audience: "practitioners"
 ---

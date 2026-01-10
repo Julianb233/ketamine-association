@@ -5,7 +5,7 @@ excerpt: "A comprehensive guide to patient selection for ketamine therapy, cover
 category: "CLINICAL_PRACTICE"
 author: "Ketamine Association Editorial Team"
 publishedAt: "2026-01-08"
-featuredImage: "/images/articles/placeholder.jpg"
+featuredImage: "/images/articles/patient-screening-assessment.svg"
 tags: ["practitioners", "ketamine", "screening", "assessment", "patient-selection", "clinical"]
 audience: "practitioners"
 ---

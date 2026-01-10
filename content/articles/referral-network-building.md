@@ -5,7 +5,7 @@ excerpt: "A strategic guide for ketamine practitioners on developing productive 
 category: "PRACTICE_MANAGEMENT"
 author: "Ketamine Association Editorial Team"
 publishedAt: "2026-01-08"
-featuredImage: "/images/articles/placeholder.jpg"
+featuredImage: "/images/articles/referral-network-building.svg"
 tags: ["practitioners", "ketamine", "business", "referrals", "collaboration", "practice-growth"]
 audience: "practitioners"
 ---
