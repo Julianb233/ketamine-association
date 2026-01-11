@@ -15,7 +15,7 @@ const featuredProviders = [
     rating: 4.9,
     reviews: 127,
     verified: true,
-    image: '/providers/provider-1.jpg',
+    image: '/images/provider-1.jpg',
   },
   {
     id: 2,
@@ -27,7 +27,7 @@ const featuredProviders = [
     rating: 4.8,
     reviews: 89,
     verified: true,
-    image: '/providers/provider-2.jpg',
+    image: '/images/provider-2.jpg',
   },
   {
     id: 3,
@@ -39,7 +39,7 @@ const featuredProviders = [
     rating: 5.0,
     reviews: 64,
     verified: true,
-    image: '/providers/provider-3.jpg',
+    image: '/images/provider-3.jpg',
   },
 ];
 
