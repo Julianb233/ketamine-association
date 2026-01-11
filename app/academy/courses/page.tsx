@@ -1,4 +1,5 @@
 import Link from "next/link";
+export const dynamic = 'force-dynamic';
 import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
 import { CourseCard, CourseCardData } from "@/components/academy/CourseCard";
@@ -294,9 +295,9 @@ export default async function CoursesPage({ searchParams }: CoursesPageProps) {
                     href="/membership"
                     variant="secondary"
                     className="bg-white text-teal-700 hover:bg-teal-50"
-                    iconRight={ArrowRight}
                   >
                     Become a Member
+                    <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 </div>
               </div>

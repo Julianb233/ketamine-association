@@ -11,6 +11,7 @@
     "db:push": "prisma db push",
     "db:migrate": "prisma migrate dev",
     "db:seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts",
+    "db:unseed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/unseed.ts",
     "db:studio": "prisma studio",
     "typecheck": "tsc --noEmit",
     "articles:index": "node scripts/generate-article-index.js"

@@ -1,6 +1,6 @@
-'use client';
-
 import Link from 'next/link';
+export const dynamic = 'force-dynamic';
+import { redirect } from 'next/navigation';
 import {
   Eye,
   Users,
@@ -15,59 +15,10 @@ import {
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
-import { Badge } from '@/components/ui/Badge';
 import { cn, formatDate } from '@/lib/utils';
-
-// Mock data - in production, this would come from server actions
-const mockStats = {
-  profileViews: 1247,
-  profileViewsChange: 12.5,
-  newLeadsThisMonth: 23,
-  leadsChange: 8.3,
-  rating: 4.8,
-  totalReviews: 47,
-  membershipTier: 'PREMIUM',
-  membershipStatus: 'ACTIVE',
-};
-
-const mockRecentLeads = [
-  {
-    id: '1',
-    firstName: 'Michael',
-    lastName: 'Chen',
-    email: 'michael.chen@email.com',
-    status: 'NEW',
-    condition: 'TREATMENT_RESISTANT_DEPRESSION',
-    createdAt: new Date('2024-01-07'),
-  },
-  {
-    id: '2',
-    firstName: 'Emily',
-    lastName: 'Rodriguez',
-    email: 'emily.r@email.com',
-    status: 'CONTACTED',
-    condition: 'ANXIETY',
-    createdAt: new Date('2024-01-06'),
-  },
-  {
-    id: '3',
-    firstName: 'James',
-    lastName: 'Wilson',
-    email: 'jwilson@email.com',
-    status: 'SCHEDULED',
-    condition: 'CHRONIC_PAIN',
-    createdAt: new Date('2024-01-05'),
-  },
-  {
-    id: '4',
-    firstName: 'Sarah',
-    lastName: 'Thompson',
-    email: 'sarah.t@email.com',
-    status: 'NEW',
-    condition: 'PTSD',
-    createdAt: new Date('2024-01-04'),
-  },
-];
+import { prisma } from '@/lib/prisma';
+import { createClient } from '@/lib/supabase/server';
+import { MEMBERSHIP_TIERS } from '@/lib/stripe';
 
 const statusColors: Record<string, string> = {
   NEW: 'bg-blue-100 text-blue-700',
@@ -92,13 +43,11 @@ const conditionLabels: Record<string, string> = {
 function StatCard({
   title,
   value,
-  change,
   icon: Icon,
   iconColor = 'text-teal-600 bg-teal-100'
 }: {
   title: string;
   value: string | number;
-  change?: number;
   icon: React.ElementType;
   iconColor?: string;
 }) {
@@ -109,21 +58,6 @@ function StatCard({
           <div>
             <p className="text-sm font-medium text-slate-500">{title}</p>
             <p className="text-3xl font-bold text-slate-900 mt-1">{value}</p>
-            {change !== undefined && (
-              <div className="flex items-center gap-1 mt-2">
-                <TrendingUp className={cn(
-                  'h-4 w-4',
-                  change >= 0 ? 'text-green-600' : 'text-red-600 rotate-180'
-                )} />
-                <span className={cn(
-                  'text-sm font-medium',
-                  change >= 0 ? 'text-green-600' : 'text-red-600'
-                )}>
-                  {change >= 0 ? '+' : ''}{change}%
-                </span>
-                <span className="text-sm text-slate-500">vs last month</span>
-              </div>
-            )}
           </div>
           <div className={cn('p-3 rounded-xl', iconColor)}>
             <Icon className="h-6 w-6" />
@@ -134,14 +68,61 @@ function StatCard({
   );
 }
 
-export default function DashboardPage() {
+export default async function DashboardPage() {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+
+  if (!user) {
+    redirect('/sign-in');
+  }
+
+  // Fetch practitioner with related data
+  const practitioner = await prisma.practitioner.findFirst({
+    where: { userId: user.id },
+    include: {
+      leads: {
+        orderBy: { createdAt: 'desc' },
+        take: 4,
+      },
+      reviews: {
+        where: { isPublished: true },
+      },
+    },
+  });
+
+  if (!practitioner) {
+    redirect('/onboarding');
+  }
+
+  // Calculate stats from real data
+  const now = new Date();
+  const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+
+  const newLeadsThisMonth = practitioner.leads.filter(
+    lead => new Date(lead.createdAt) >= startOfMonth
+  ).length;
+
+  const totalLeads = practitioner.leads.length;
+  const recentLeads = practitioner.leads.slice(0, 4);
+
+  // Calculate average rating
+  const publishedReviews = practitioner.reviews;
+  const averageRating = publishedReviews.length > 0
+    ? publishedReviews.reduce((sum, r) => sum + r.rating, 0) / publishedReviews.length
+    : 0;
+
+  // Get membership info
+  const tierKey = practitioner.membershipTier as keyof typeof MEMBERSHIP_TIERS;
+  const tierInfo = MEMBERSHIP_TIERS[tierKey] || MEMBERSHIP_TIERS.FREE;
+  const leadsLimit = tierInfo.limits.leads === Infinity ? 'Unlimited' : tierInfo.limits.leads;
+
   return (
     <div className="space-y-8">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h1 className="text-2xl md:text-3xl font-bold text-slate-900">
-            Welcome back, Dr. Sarah
+            Welcome back, {practitioner.title || ''} {practitioner.firstName}
           </h1>
           <p className="text-slate-500 mt-1">
             Here&apos;s what&apos;s happening with your practice today.
@@ -152,7 +133,7 @@ export default function DashboardPage() {
             <Pencil className="h-4 w-4 mr-2" />
             Edit Profile
           </Button>
-          <Button variant="primary" size="sm" href="/practitioners/dr-sarah-johnson">
+          <Button variant="primary" size="sm" href={`/practitioners/${practitioner.slug}`}>
             <ExternalLink className="h-4 w-4 mr-2" />
             View Public Profile
           </Button>
@@ -163,27 +144,25 @@ export default function DashboardPage() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
         <StatCard
           title="Profile Views"
-          value={mockStats.profileViews.toLocaleString()}
-          change={mockStats.profileViewsChange}
+          value={practitioner.profileViews.toLocaleString()}
           icon={Eye}
           iconColor="text-teal-600 bg-teal-100"
         />
         <StatCard
-          title="New Leads"
-          value={mockStats.newLeadsThisMonth}
-          change={mockStats.leadsChange}
+          title="New Leads This Month"
+          value={newLeadsThisMonth}
           icon={Users}
           iconColor="text-blue-600 bg-blue-100"
         />
         <StatCard
           title="Rating"
-          value={mockStats.rating.toFixed(1)}
+          value={averageRating > 0 ? averageRating.toFixed(1) : 'N/A'}
           icon={Star}
           iconColor="text-amber-600 bg-amber-100"
         />
         <StatCard
           title="Total Reviews"
-          value={mockStats.totalReviews}
+          value={publishedReviews.length}
           icon={MessageSquare}
           iconColor="text-purple-600 bg-purple-100"
         />
@@ -205,70 +184,80 @@ export default function DashboardPage() {
               </Link>
             </CardHeader>
             <CardContent>
-              <div className="overflow-x-auto">
-                <table className="w-full">
-                  <thead>
-                    <tr className="border-b border-slate-100">
-                      <th className="text-left text-xs font-semibold text-slate-500 uppercase tracking-wider py-3 px-4">
-                        Name
-                      </th>
-                      <th className="text-left text-xs font-semibold text-slate-500 uppercase tracking-wider py-3 px-4 hidden sm:table-cell">
-                        Condition
-                      </th>
-                      <th className="text-left text-xs font-semibold text-slate-500 uppercase tracking-wider py-3 px-4">
-                        Status
-                      </th>
-                      <th className="text-left text-xs font-semibold text-slate-500 uppercase tracking-wider py-3 px-4 hidden md:table-cell">
-                        Date
-                      </th>
-                      <th className="py-3 px-4"></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {mockRecentLeads.map((lead) => (
-                      <tr
-                        key={lead.id}
-                        className="border-b border-slate-50 hover:bg-slate-50 transition-colors"
-                      >
-                        <td className="py-4 px-4">
-                          <div>
-                            <p className="font-medium text-slate-900">
-                              {lead.firstName} {lead.lastName}
-                            </p>
-                            <p className="text-sm text-slate-500">{lead.email}</p>
-                          </div>
-                        </td>
-                        <td className="py-4 px-4 hidden sm:table-cell">
-                          <span className="text-sm text-slate-600">
-                            {conditionLabels[lead.condition] || lead.condition}
-                          </span>
-                        </td>
-                        <td className="py-4 px-4">
-                          <span className={cn(
-                            'inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium',
-                            statusColors[lead.status]
-                          )}>
-                            {lead.status}
-                          </span>
-                        </td>
-                        <td className="py-4 px-4 hidden md:table-cell">
-                          <span className="text-sm text-slate-500">
-                            {formatDate(lead.createdAt)}
-                          </span>
-                        </td>
-                        <td className="py-4 px-4">
-                          <Link
-                            href={`/dashboard/leads?id=${lead.id}`}
-                            className="p-2 hover:bg-slate-100 rounded-lg inline-flex"
-                          >
-                            <ArrowUpRight className="h-4 w-4 text-slate-400" />
-                          </Link>
-                        </td>
+              {recentLeads.length === 0 ? (
+                <div className="py-12 text-center">
+                  <Users className="h-12 w-12 text-slate-300 mx-auto mb-4" />
+                  <p className="text-slate-500">No leads yet</p>
+                  <p className="text-sm text-slate-400 mt-1">
+                    Leads will appear here when patients contact you
+                  </p>
+                </div>
+              ) : (
+                <div className="overflow-x-auto">
+                  <table className="w-full">
+                    <thead>
+                      <tr className="border-b border-slate-100">
+                        <th className="text-left text-xs font-semibold text-slate-500 uppercase tracking-wider py-3 px-4">
+                          Name
+                        </th>
+                        <th className="text-left text-xs font-semibold text-slate-500 uppercase tracking-wider py-3 px-4 hidden sm:table-cell">
+                          Condition
+                        </th>
+                        <th className="text-left text-xs font-semibold text-slate-500 uppercase tracking-wider py-3 px-4">
+                          Status
+                        </th>
+                        <th className="text-left text-xs font-semibold text-slate-500 uppercase tracking-wider py-3 px-4 hidden md:table-cell">
+                          Date
+                        </th>
+                        <th className="py-3 px-4"></th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+                    </thead>
+                    <tbody>
+                      {recentLeads.map((lead) => (
+                        <tr
+                          key={lead.id}
+                          className="border-b border-slate-50 hover:bg-slate-50 transition-colors"
+                        >
+                          <td className="py-4 px-4">
+                            <div>
+                              <p className="font-medium text-slate-900">
+                                {lead.firstName} {lead.lastName}
+                              </p>
+                              <p className="text-sm text-slate-500">{lead.email}</p>
+                            </div>
+                          </td>
+                          <td className="py-4 px-4 hidden sm:table-cell">
+                            <span className="text-sm text-slate-600">
+                              {lead.condition ? (conditionLabels[lead.condition] || lead.condition) : 'Not specified'}
+                            </span>
+                          </td>
+                          <td className="py-4 px-4">
+                            <span className={cn(
+                              'inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium',
+                              statusColors[lead.status]
+                            )}>
+                              {lead.status}
+                            </span>
+                          </td>
+                          <td className="py-4 px-4 hidden md:table-cell">
+                            <span className="text-sm text-slate-500">
+                              {formatDate(lead.createdAt)}
+                            </span>
+                          </td>
+                          <td className="py-4 px-4">
+                            <Link
+                              href={`/dashboard/leads?id=${lead.id}`}
+                              className="p-2 hover:bg-slate-100 rounded-lg inline-flex"
+                            >
+                              <ArrowUpRight className="h-4 w-4 text-slate-400" />
+                            </Link>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
             </CardContent>
           </Card>
         </div>
@@ -283,22 +272,26 @@ export default function DashboardPage() {
                 </div>
                 <div>
                   <p className="text-teal-100 text-sm">Current Plan</p>
-                  <p className="text-xl font-bold">Premium Membership</p>
+                  <p className="text-xl font-bold">{tierInfo.name}</p>
                 </div>
               </div>
               <div className="space-y-3 mb-6">
                 <div className="flex justify-between text-sm">
                   <span className="text-teal-100">Status</span>
-                  <span className="font-medium">Active</span>
+                  <span className="font-medium">{practitioner.membershipStatus}</span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span className="text-teal-100">Leads Remaining</span>
-                  <span className="font-medium">17 / 20</span>
+                  <span className="text-teal-100">Leads This Month</span>
+                  <span className="font-medium">{newLeadsThisMonth} / {leadsLimit}</span>
                 </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-teal-100">Renewal Date</span>
-                  <span className="font-medium">Feb 15, 2024</span>
-                </div>
+                {practitioner.membershipExpiresAt && (
+                  <div className="flex justify-between text-sm">
+                    <span className="text-teal-100">Renewal Date</span>
+                    <span className="font-medium">
+                      {formatDate(practitioner.membershipExpiresAt)}
+                    </span>
+                  </div>
+                )}
               </div>
               <Link
                 href="/dashboard/settings"
@@ -354,8 +347,8 @@ export default function DashboardPage() {
             </CardContent>
           </Card>
 
-          {/* Upgrade CTA (for non-Premium users) */}
-          {mockStats.membershipTier !== 'ELITE' && (
+          {/* Upgrade CTA (for non-Elite users) */}
+          {practitioner.membershipTier !== 'ELITE' && (
             <Card className="border-2 border-amber-200 bg-gradient-to-br from-amber-50 to-white">
               <CardContent>
                 <div className="flex items-center gap-2 mb-3">

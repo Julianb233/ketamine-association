@@ -1,71 +1,17 @@
+import { redirect } from 'next/navigation';
+export const dynamic = 'force-dynamic';
 import {
   Star,
   MessageSquare,
   ThumbsUp,
   AlertCircle,
-  TrendingUp,
   Calendar
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
 import { cn, formatDate } from '@/lib/utils';
-
-// Mock data
-const mockReviewStats = {
-  averageRating: 4.8,
-  totalReviews: 47,
-  ratingDistribution: {
-    5: 35,
-    4: 8,
-    3: 3,
-    2: 1,
-    1: 0,
-  },
-  recentTrend: 4.9,
-};
-
-const mockReviews = [
-  {
-    id: '1',
-    rating: 5,
-    title: 'Life-changing treatment',
-    content: 'After years of struggling with treatment-resistant depression, ketamine therapy with Dr. Johnson has been truly life-changing. Her compassionate approach and expertise made all the difference in my recovery journey.',
-    isVerified: true,
-    createdAt: new Date('2024-01-05'),
-  },
-  {
-    id: '2',
-    rating: 5,
-    title: 'Excellent care and professionalism',
-    content: 'Dr. Johnson and her team provided exceptional care throughout my treatment. The facility is comfortable and the staff is incredibly supportive. I highly recommend this practice.',
-    isVerified: true,
-    createdAt: new Date('2024-01-02'),
-  },
-  {
-    id: '3',
-    rating: 4,
-    title: 'Very helpful for anxiety',
-    content: 'The treatment has significantly helped with my anxiety. The only reason for 4 stars is the wait time for appointments, but the quality of care is top-notch.',
-    isVerified: true,
-    createdAt: new Date('2023-12-28'),
-  },
-  {
-    id: '4',
-    rating: 5,
-    title: 'Professional and caring',
-    content: 'Dr. Johnson takes the time to explain everything and ensures you feel comfortable throughout the process. The KAP sessions have been incredibly beneficial.',
-    isVerified: false,
-    createdAt: new Date('2023-12-20'),
-  },
-  {
-    id: '5',
-    rating: 3,
-    title: 'Good results, but expensive',
-    content: 'The treatment is effective and the care is professional, but the cost is quite high and insurance coverage is limited. Would appreciate more payment options.',
-    isVerified: true,
-    createdAt: new Date('2023-12-15'),
-  },
-];
+import { prisma } from '@/lib/prisma';
+import { createClient } from '@/lib/supabase/server';
 
 function StarRating({ rating, size = 'md' }: { rating: number; size?: 'sm' | 'md' | 'lg' }) {
   const sizeClasses = {
@@ -109,7 +55,66 @@ function RatingBar({ rating, count, total }: { rating: number; count: number; to
   );
 }
 
-export default function ReviewsPage() {
+export default async function ReviewsPage() {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+
+  if (!user) {
+    redirect('/sign-in');
+  }
+
+  // Fetch practitioner with reviews
+  const practitioner = await prisma.practitioner.findFirst({
+    where: { userId: user.id },
+    include: {
+      reviews: {
+        where: { isPublished: true },
+        orderBy: { createdAt: 'desc' },
+      },
+    },
+  });
+
+  if (!practitioner) {
+    redirect('/onboarding');
+  }
+
+  const reviews = practitioner.reviews;
+  const totalReviews = reviews.length;
+
+  // Calculate stats
+  const averageRating = totalReviews > 0
+    ? reviews.reduce((sum, r) => sum + r.rating, 0) / totalReviews
+    : 0;
+
+  // Calculate rating distribution
+  const ratingDistribution = {
+    5: reviews.filter(r => r.rating === 5).length,
+    4: reviews.filter(r => r.rating === 4).length,
+    3: reviews.filter(r => r.rating === 3).length,
+    2: reviews.filter(r => r.rating === 2).length,
+    1: reviews.filter(r => r.rating === 1).length,
+  };
+
+  // Count verified reviews
+  const verifiedCount = reviews.filter(r => r.isVerified).length;
+
+  // Count reviews this month
+  const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
+  const recentReviewsCount = reviews.filter(
+    r => new Date(r.createdAt) > thirtyDaysAgo
+  ).length;
+
+  // Calculate recent trend (average rating in last 30 days)
+  const recentReviews = reviews.filter(r => new Date(r.createdAt) > thirtyDaysAgo);
+  const recentTrend = recentReviews.length > 0
+    ? recentReviews.reduce((sum, r) => sum + r.rating, 0) / recentReviews.length
+    : 0;
+
+  // Positive reviews (4 or 5 stars)
+  const positivePercentage = totalReviews > 0
+    ? Math.round(((ratingDistribution[5] + ratingDistribution[4]) / totalReviews) * 100)
+    : 0;
+
   return (
     <div className="space-y-6">
       {/* Header */}
@@ -125,19 +130,30 @@ export default function ReviewsPage() {
         {/* Overall Rating */}
         <Card className="md:col-span-1">
           <CardContent className="text-center py-8">
-            <div className="text-5xl font-bold text-slate-900 mb-2">
-              {mockReviewStats.averageRating.toFixed(1)}
-            </div>
-            <StarRating rating={Math.round(mockReviewStats.averageRating)} size="lg" />
-            <p className="text-slate-500 mt-2">
-              Based on {mockReviewStats.totalReviews} reviews
-            </p>
-            <div className="flex items-center justify-center gap-1 mt-4 text-green-600">
-              <TrendingUp className="h-4 w-4" />
-              <span className="text-sm font-medium">
-                {mockReviewStats.recentTrend.toFixed(1)} avg in last 30 days
-              </span>
-            </div>
+            {totalReviews > 0 ? (
+              <>
+                <div className="text-5xl font-bold text-slate-900 mb-2">
+                  {averageRating.toFixed(1)}
+                </div>
+                <StarRating rating={Math.round(averageRating)} size="lg" />
+                <p className="text-slate-500 mt-2">
+                  Based on {totalReviews} review{totalReviews !== 1 ? 's' : ''}
+                </p>
+                {recentTrend > 0 && (
+                  <div className="flex items-center justify-center gap-1 mt-4 text-green-600">
+                    <span className="text-sm font-medium">
+                      {recentTrend.toFixed(1)} avg in last 30 days
+                    </span>
+                  </div>
+                )}
+              </>
+            ) : (
+              <>
+                <div className="text-5xl font-bold text-slate-300 mb-2">--</div>
+                <StarRating rating={0} size="lg" />
+                <p className="text-slate-500 mt-2">No reviews yet</p>
+              </>
+            )}
           </CardContent>
         </Card>
 
@@ -147,16 +163,25 @@ export default function ReviewsPage() {
             <CardTitle>Rating Distribution</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="space-y-3">
-              {[5, 4, 3, 2, 1].map((rating) => (
-                <RatingBar
-                  key={rating}
-                  rating={rating}
-                  count={mockReviewStats.ratingDistribution[rating as keyof typeof mockReviewStats.ratingDistribution]}
-                  total={mockReviewStats.totalReviews}
-                />
-              ))}
-            </div>
+            {totalReviews > 0 ? (
+              <div className="space-y-3">
+                {[5, 4, 3, 2, 1].map((rating) => (
+                  <RatingBar
+                    key={rating}
+                    rating={rating}
+                    count={ratingDistribution[rating as keyof typeof ratingDistribution]}
+                    total={totalReviews}
+                  />
+                ))}
+              </div>
+            ) : (
+              <div className="py-8 text-center text-slate-500">
+                <p>No rating data available yet</p>
+                <p className="text-sm text-slate-400 mt-1">
+                  Distribution will appear when you receive reviews
+                </p>
+              </div>
+            )}
           </CardContent>
         </Card>
       </div>
@@ -171,7 +196,7 @@ export default function ReviewsPage() {
               </div>
               <div>
                 <p className="text-2xl font-bold text-slate-900">
-                  {mockReviewStats.ratingDistribution[5]}
+                  {ratingDistribution[5]}
                 </p>
                 <p className="text-sm text-slate-500">5-star reviews</p>
               </div>
@@ -186,11 +211,7 @@ export default function ReviewsPage() {
               </div>
               <div>
                 <p className="text-2xl font-bold text-slate-900">
-                  {Math.round(
-                    ((mockReviewStats.ratingDistribution[5] + mockReviewStats.ratingDistribution[4]) /
-                      mockReviewStats.totalReviews) *
-                      100
-                  )}%
+                  {positivePercentage}%
                 </p>
                 <p className="text-sm text-slate-500">Positive reviews</p>
               </div>
@@ -205,7 +226,7 @@ export default function ReviewsPage() {
               </div>
               <div>
                 <p className="text-2xl font-bold text-slate-900">
-                  {mockReviews.filter((r) => r.isVerified).length}
+                  {verifiedCount}
                 </p>
                 <p className="text-sm text-slate-500">Verified reviews</p>
               </div>
@@ -220,9 +241,7 @@ export default function ReviewsPage() {
               </div>
               <div>
                 <p className="text-2xl font-bold text-slate-900">
-                  {mockReviews.filter(
-                    (r) => r.createdAt > new Date(Date.now() - 30 * 24 * 60 * 60 * 1000)
-                  ).length}
+                  {recentReviewsCount}
                 </p>
                 <p className="text-sm text-slate-500">This month</p>
               </div>
@@ -237,7 +256,7 @@ export default function ReviewsPage() {
           <CardTitle>Recent Reviews</CardTitle>
         </CardHeader>
         <CardContent className="divide-y divide-slate-100">
-          {mockReviews.length === 0 ? (
+          {reviews.length === 0 ? (
             <div className="py-12 text-center">
               <MessageSquare className="h-12 w-12 text-slate-300 mx-auto mb-4" />
               <p className="text-slate-500">No reviews yet</p>
@@ -246,7 +265,7 @@ export default function ReviewsPage() {
               </p>
             </div>
           ) : (
-            mockReviews.map((review) => (
+            reviews.map((review) => (
               <div key={review.id} className="py-6 first:pt-0 last:pb-0">
                 <div className="flex items-start justify-between gap-4 mb-3">
                   <div>
